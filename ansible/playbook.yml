@@ -19,7 +19,6 @@
         bucket: jmtestpage4
         file_root: ./target/
         mode: put
-        metadata: 'Content-Encoding=gzip,Cache-Control=no-cache'
         permission: public-read
         cache_control: "public, max-age=31536000"
         file_change_strategy: checksum

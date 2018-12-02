@@ -45,15 +45,33 @@
     - name: Details about cert-id
       debug:
         msg: "{{ (cert.stdout|from_json).CertificateArn }}"
-    - name: Details validation (1)
-      debug:
-        msg: "{{ cert_details.certificates[0].domain_validation_options[0].resource_record.name }}"
-    - name: Details validation (2)
-      debug:
-        var: cert_details.certificates[0].domain_validation_options[0].resource_record.value        
-    - name: Details validation (3)
-      debug:
-        var: cert_details.certificates[0].domain_validation_options[1].resource_record.name
-    - name: Details validation (4)
-      debug:
-        var: cert_details.certificates[0].domain_validation_options[1].resource_record.value
+    - name: Creat DNS entry 1
+      uri:
+        url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
+        method: POST
+        body: "{
+             \"rrset_name\": \"{{ cert_details.certificates[0].domain_validation_options[0].resource_record.name }}\",
+             \"rrset_type\": \"{{ cert_details.certificates[0].domain_validation_options[0].resource_record.type }}\",
+             \"rrset_values\": [\"{{ cert_details.certificates[0].domain_validation_options[0].resource_record.value }}\"],
+             \"rrset_ttl\": 3600
+             }"
+        status_code: 201
+        body_format: json
+        headers:
+          Content-Type: "application/json"
+          X-Api-Key: "{{ lookup('env','GANDI') }}"
+    - name: Creat DNS entry 2
+      uri:
+        url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
+        method: POST
+        body: "{
+             \"rrset_name\": \"{{ cert_details.certificates[0].domain_validation_options[1].resource_record.name }}\",
+             \"rrset_type\": \"{{ cert_details.certificates[0].domain_validation_options[1].resource_record.type }}\",
+             \"rrset_values\": [\"{{ cert_details.certificates[0].domain_validation_options[1].resource_record.value }}\"],
+             \"rrset_ttl\": 3600
+             }"
+        status_code: 201
+        body_format: json
+        headers:
+          Content-Type: "application/json"
+          X-Api-Key: "{{ lookup('env','GANDI') }}"    

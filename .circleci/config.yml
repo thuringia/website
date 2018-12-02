@@ -24,10 +24,10 @@ jobs:
 
       - checkout
       - restore_cache:
-          key: page-{{ .Branch }}-{{ checksum "./ansible/requirements.yml" }}-v1
-      - run: ansible-galaxy install -r ansible/requirements.yml
+          key: page-{{ .Branch }}-{{ checksum "./ansible/playbook.yml" }}-v1
+      - run: ansible-playbook ansible/playbook.yml
       - save_cache:
-          key: page-{{ .Branch }}-{{ checksum "./ansible/requirements.yml" }}-v1
+          key: page-{{ .Branch }}-{{ checksum "./ansible/playbook.yml" }}-v1
           paths:
             - '/root/.ansible/roles'
 

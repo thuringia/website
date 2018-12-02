@@ -28,7 +28,7 @@
         aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
         --validation-method DNS
         --subject-alternative-names www.jmtestpage4.jannes.mingram.net
-        --idempotency-token jmtestpage4.jannes.mingram.net
+        --idempotency-token jmtestpage4
         --region us-east-1
       register: cert
     - name: Safe cert details

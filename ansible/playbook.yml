@@ -6,6 +6,6 @@
   tasks:
     - name: Create an Bucket
       s3_bucket:
-        name: mys3bucket
+        name: jmtestpage2
 
 

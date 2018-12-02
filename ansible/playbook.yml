@@ -4,6 +4,17 @@
   gather_facts: False
   
   tasks:
+    - name: Create acm cert request
+      shell: >
+        aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
+        --validation-method DNS
+        --subject-alternative-names www.jmtestpage4.jannes.mingram.net
+        --idempotency-token jmtestpage4
+        --region us-east-1
+      register: cert
+    - name: Safe cert details
+      set_fact:
+        acm_item_cert_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
     - name: Create an Bucket
       s3_bucket:
         name: jmtestpage4
@@ -23,17 +34,6 @@
         cache_control: "public, max-age=31536000"
         file_change_strategy: checksum
         mode: push
-    - name: Create acm cert request
-      shell: >
-        aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
-        --validation-method DNS
-        --subject-alternative-names www.jmtestpage4.jannes.mingram.net
-        --idempotency-token jmtestpage4
-        --region us-east-1
-      register: cert
-    - name: Safe cert details
-      set_fact:
-        acm_item_cert_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
     - name: obtain all facts for a single ACM certificate
       aws_acm_facts:
         domain_name: "jmtestpage4.jannes.mingram.net"

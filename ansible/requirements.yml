@@ -1,0 +1,11 @@
+- name: Create AWS resources
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  
+  tasks:
+    - name: Create an Bucket
+    s3_bucket:
+      name: mys3bucket
+
+

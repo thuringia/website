@@ -29,8 +29,8 @@
         aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
         --validation-method DNS
         --subject-alternative-names www.jmtestpage4.jannes.mingram.net
-        --region eu-central-1
-    - name: Debug hello
+        --region us-east-1
+    - name: Debug cert arn
       debug: "last stdout `{{ cert.stdout }}`."
     - name: Safe cert details
       set_fact:

@@ -14,7 +14,7 @@
         region: eu-central-1
         error_key: index.html
         state: present
-    - name: Create an empty bucket
+    - name: Upload files
       s3_sync:
         bucket: jmtestpage4
         region: eu-central-1
@@ -23,6 +23,13 @@
         cache_control: "public, max-age=31536000"
         file_change_strategy: checksum
         mode: push
+    - name: Create acm cert request
+      register: cert
+      shell: >
+        aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
+        --validation-method DNS
+        --subject-alternative-names www.jmtestpage4.jannes.mingram.net
         
-
+    - name: Debug hello
+      debug: "last stdout `{{ cert.stdout }}`."
 

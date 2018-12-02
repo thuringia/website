@@ -18,7 +18,7 @@
       s3_sync:
         bucket: jmtestpage4
         region: eu-central-1
-        file_root: ./target/
+        file_root: ../target/
         permission: public-read
         cache_control: "public, max-age=31536000"
         file_change_strategy: checksum

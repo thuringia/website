@@ -30,7 +30,9 @@
         --validation-method DNS
         --subject-alternative-names www.jmtestpage4.jannes.mingram.net
         --region eu-central-1
-        
     - name: Debug hello
       debug: "last stdout `{{ cert.stdout }}`."
+    - name: Safe cert details
+      set_fact:
+        acm_item_cert_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
 

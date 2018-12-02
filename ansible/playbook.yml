@@ -6,13 +6,14 @@
   tasks:
     - name: Create an Bucket
       s3_bucket:
-        name: jmtestpage3
+        name: jmtestpage4
         region: eu-central-1
     - name: Configure bucket as website
       s3_website :
-        name: jmtestpage3
+        name: jmtestpage4
         region: eu-central-1
         error_key: index.html
+        state: present
         
 
 

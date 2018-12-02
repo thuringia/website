@@ -24,15 +24,19 @@
         file_change_strategy: checksum
         mode: push
     - name: Create acm cert request
-      register: cert
       shell: >
         aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
         --validation-method DNS
         --subject-alternative-names www.jmtestpage4.jannes.mingram.net
         --region us-east-1
-    - name: Debug cert arn
-      debug: "last stdout `{{ cert.stdout }}`."
+      register: cert
     - name: Safe cert details
       set_fact:
         acm_item_cert_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
-
+    - name: obtain all facts for a single ACM certificate
+      aws_acm_facts:
+        domain_name: "*.jmtestpage4.jannes.mingram.net"
+      register: cert_details
+    - name: Details about cert
+      debug:
+        var: cert_details

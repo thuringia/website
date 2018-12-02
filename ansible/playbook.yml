@@ -47,7 +47,7 @@
         msg: "{{ (cert.stdout|from_json).CertificateArn }}"
     - name: Details validation (1)
       debug:
-        var: cert_details.certificates[0].domain_validation_options[0].resource_record.name
+        msg: "{{ (cert_details|from_json).certificates[0].domain_validation_options[0].resource_record.name }}"
     - name: Details validation (2)
       debug:
         var: cert_details.certificates[0].domain_validation_options[0].resource_record.value        

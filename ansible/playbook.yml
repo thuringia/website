@@ -5,11 +5,14 @@
   
   tasks:
     - name: Create an Bucket
-      s3:
+      s3_website:
         name: jmtestpage2
         region: eu-central-1
-        mode: create
-        permission: public-read
+    - name: Configure bucket as website
+      s3_website :
+        name: jmtestpage2
+        region: eu-central-1
+        error_key: index.html
         
 
 

@@ -43,5 +43,8 @@
         var: cert_details
     - name: Details about cert-id
       debug:
+        var: cert
+    - name: Details about cert-id
+      debug:
         msg: "{{ (cert.stdout|from_json).CertificateArn }}"
         

@@ -35,7 +35,7 @@
         acm_item_cert_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
     - name: obtain all facts for a single ACM certificate
       aws_acm_facts:
-        domain_name: "*.jmtestpage4.jannes.mingram.net"
+        domain_name: "jmtestpage4.jannes.mingram.net"
         region: us-east-1
       register: cert_details
     - name: Details about cert

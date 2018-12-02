@@ -28,6 +28,7 @@
         aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
         --validation-method DNS
         --subject-alternative-names www.jmtestpage4.jannes.mingram.net
+        --idempotency-token jmtestpage4.jannes.mingram.net
         --region us-east-1
       register: cert
     - name: Safe cert details
@@ -43,8 +44,16 @@
         var: cert_details
     - name: Details about cert-id
       debug:
-        var: cert
-    - name: Details about cert-id
-      debug:
         msg: "{{ (cert.stdout|from_json).CertificateArn }}"
-        
+    - name: Details validation (1)
+      debug:
+        var: cert_details.certificates[0].domain_validation_options[0].resource_record.name
+    - name: Details validation (2)
+      debug:
+        var: cert_details.certificates[0].domain_validation_options[0].resource_record.value        
+    - name: Details validation (3)
+      debug:
+        var: cert_details.certificates[0].domain_validation_options[1].resource_record.name
+    - name: Details validation (4)
+      debug:
+        var: cert_details.certificates[0].domain_validation_options[1].resource_record.value

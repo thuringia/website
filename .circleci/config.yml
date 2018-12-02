@@ -20,7 +20,7 @@ jobs:
       - run:
           name: Install System Packages
           # pip issue :( https://github.com/pyenv/pyenv/issues/1141#issuecomment-381421570
-          command: python -m pip install --force-reinstall pip && pip install ansible
+          command: python -m pip install --force-reinstall pip && pip install ansible && pip install boto && pip install boto3
 
       - checkout
       - restore_cache:

@@ -5,7 +5,11 @@
   
   tasks:
     - name: Create an Bucket
-      s3_bucket:
+      s3:
         name: jmtestpage2
+        region: eu-central-1
+        mode: create
+        permission: public-read
+        
 
 

@@ -5,7 +5,7 @@
   
   tasks:
     - name: Create an Bucket
-      s3_website:
+      s3_bucket:
         name: jmtestpage2
         region: eu-central-1
     - name: Configure bucket as website

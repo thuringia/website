@@ -106,7 +106,7 @@
         #    error_caching_min_ttl: 864000
         #    response_page_path: '/index.html'
         #    error_code: 404
-        comment: "Created with Ansible",
+        comment: "Created with Ansible"
         default_root_object: index.html
         enabled: no
         ipv6_enabled: yes

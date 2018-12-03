@@ -129,6 +129,17 @@
             cached_methods:
               - GET
               - HEAD
+    - name: Obtain cloudfront url for cname
+      register: cloudfront_details
+      cloudfront_facts:
+        distribution: true
+        domain_name_alias: www.{{ pagename }}.jannes.mingram.net
+    - name: DEBUG
+      debug:
+        var: cloudfront_details
+    - name: DEBUG
+      debug:
+        var: ansible_facts['cloudfront']['www.my-website.com']        
 
         
         

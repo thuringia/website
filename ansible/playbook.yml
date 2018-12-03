@@ -91,6 +91,7 @@
           acm_certificate_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
           certificate : "{{ (cert.stdout|from_json).CertificateArn }}"
           certificate_source: acm
+          ssl_support_method: sni-only
         tags:
           Name: example distribution
           Project: example project

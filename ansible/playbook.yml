@@ -4,6 +4,8 @@
   gather_facts: False
   
   tasks:
+    - name: Install AWSCLI
+      pip: name=awscli state=present
     - name: Create acm cert request
       shell: >
         aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
@@ -79,7 +81,7 @@
     - name: Setup cloudfront
       cloudfront_distribution:
         state: present
-        wait: yes
+        wait: no
         origins: 
           - s3_origin_access_identity_enabled: yes
             domain_name: jmtestpage4.s3.amazonaws.com
@@ -93,19 +95,20 @@
               - GET
               - HEAD
             cached_methods:
-              - GET
-              - HEAD
-        custom_error_responses:
-          - response_code: 200
-            error_caching_min_ttl: 864000
-            response_page_path: '/index.html'
-            error_code: 403
-          - response_code: 200
-            error_caching_min_ttl: 864000
-            response_page_path: '/index.html'
-            error_code: 404
+              items:
+                - GET
+                - HEAD
+        # custom_error_responses:
+        #  - response_code: 200
+        #    error_caching_min_ttl: 864000
+        #    response_page_path: '/index.html'
+        #    error_code: 403
+        #  - response_code: 200
+        #    error_caching_min_ttl: 864000
+        #    response_page_path: '/index.html'
+        #    error_code: 404
         default_root_object: index.html
-        enabled: yes
+        enabled: no
         ipv6_enabled: yes
         region: eu-central-1
         viewer_certificate:

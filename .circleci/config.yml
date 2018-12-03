@@ -13,24 +13,24 @@ jobs:
           name: cd into directory
           command: cd src
       - restore_cache: # special step to restore the dependency cache
-          key: dependency-cache-v1-{{ checksum "package-lock.json" }}
+          key: dependency-cache-v1-{{ checksum "./yarn.lock" }}
       - run:
           name: Install gatsby
           command: npm i -g gatsby-cli
       - run:
-          name: install-npm-wee
-          command: npm install
+          name: install-yarn packages
+          command: yarn
       - save_cache: # special step to save the dependency cache
-          key: dependency-cache-v1-{{ checksum "package-lock.json" }}
+          key: dependency-cache-v1-{{ checksum "./yarn.lock" }}
           paths:
             - ./node_modules
       - restore_cache: # special step to restore the dependency cache
-          key: gatsby-cache-v1-{{ checksum "package-lock.json" }}-{{ checksum "gatsby-config.js" }}
+          key: gatsby-cache-v1-{{ checksum "./yarn.lock" }}-{{ checksum "gatsby-config.js" }}
       - run:
           name: Build
           command: gatsby build
       - save_cache: # special step to save the dependency cache
-          key: gatsby-cache-v1-{{ checksum "package-lock.json" }}-{{ checksum "gatsby-config.js" }}
+          key: gatsby-cache-v1-{{ checksum "./yarn.lock" }}-{{ checksum "gatsby-config.js" }}
           paths:
             - ./.cache
       - run:

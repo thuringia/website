@@ -81,14 +81,16 @@
     - name: Setup cloudfront
       cloudfront_distribution:
         state: present
-        wait: no
+        # wait: no
         caller_reference: jmtestpage4
         origins: 
           - s3_origin_access_identity_enabled: yes
             domain_name: jmtestpage4.s3.amazonaws.com
             id: 'jmtestpage4'
+            origin_path: /
         aliases: [ 'jmtestpage4.jannes.mingram.net', 'www.jmtestpage4.jannes.mingram.net' ]
         default_cache_behavior:
+          target_origin_id: 'jmtestpage4'
           compress: true
           viewer_protocol_policy: redirect-to-https
           allowed_methods:

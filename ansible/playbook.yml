@@ -55,7 +55,7 @@
              \"rrset_values\": [\"{{ cert_details.certificates[0].domain_validation_options[0].resource_record.value }}\"],
              \"rrset_ttl\": 3600
              }"
-        status_code: 201
+        status_code: 201, 200
         body_format: json
         headers:
           Content-Type: "application/json"
@@ -70,7 +70,7 @@
              \"rrset_values\": [\"{{ cert_details.certificates[0].domain_validation_options[1].resource_record.value }}\"],
              \"rrset_ttl\": 3600
              }"
-        status_code: 201
+        status_code: 201, 200
         body_format: json
         headers:
           Content-Type: "application/json"

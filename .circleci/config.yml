@@ -44,7 +44,7 @@ jobs:
           command: python -m pip install --force-reinstall pip && pip install ansible
       - run:
           name: ls webapp
-          command: ls -l ./target/
+          command: ls -l target/
       - checkout
       - restore_cache:
           key: page-{{ .Branch }}-{{ checksum "./ansible/playbook.yml" }}-v1

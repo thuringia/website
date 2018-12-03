@@ -19,6 +19,7 @@
       s3_bucket:
         name: jmtestpage4
         region: eu-central-1
+      register: bucket_details
     - name: Configure bucket as website
       s3_website :
         name: jmtestpage4
@@ -72,6 +73,9 @@
     - name: Details about cert-id
       debug:
         msg: "{{ (cert.stdout|from_json).CertificateArn }}"
+    - name: Details about bucket
+      debug:
+        var: bucket_details
     - name: Setup cloudfront
       cloudfront_distribution:
         state: present

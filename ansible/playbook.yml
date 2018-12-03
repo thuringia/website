@@ -46,15 +46,28 @@
         cache_control: "public, max-age=31536000, immutable"
         file_change_strategy: checksum
         mode: push
-    - name: PUT index with different meta
-      aws_s3:
+        include: "*"
+        exclude: "*.html,.*"
+    - name: Upload files
+      s3_sync:
         bucket: "{{ pagename }}"
-        object: /index.html
-        src: ../target/index.html
-        mode: put
         region: eu-central-1
-        encrypt: no
-        metadata: 'Cache-Control="public, max-age=600, stale-while-revalidate=300"'
+        file_root: ../target/
+        permission: public-read
+        cache_control: "public, max-age=600, stale-while-revalidate=300"
+        file_change_strategy: checksum
+        mode: push
+        include: "*.html"
+        exclude: ".*"
+    # - name: PUT index with different meta
+    #   aws_s3:
+    #     bucket: "{{ pagename }}"
+    #     object: /index.html
+    #     src: ../target/index.html
+    #     mode: put
+    #     region: eu-central-1
+    #     encrypt: no
+    #     metadata: 'Cache-Control="public, max-age=600, stale-while-revalidate=300"'
     - name: obtain all facts for a single ACM certificate
       aws_acm_facts:
         domain_name: "{{ pagename }}.jannes.mingram.net"

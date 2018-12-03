@@ -9,6 +9,12 @@
         pagename: jmtestpage6
     - name: Install AWSCLI
       pip: name=awscli state=present
+    - name: Install boto
+      pip: name=boto state=present
+    - name: Install boto3
+      pip: name=boto3 state=present
+    - name: Install botocore
+      pip: name=botocore state=present
     - name: Create acm cert request
       shell: >
         aws acm request-certificate --domain-name {{ pagename }}.jannes.mingram.net

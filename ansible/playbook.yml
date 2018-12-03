@@ -141,7 +141,7 @@
         tags:
           Name: "{{ pagename }}-{{ lookup('env','CIRCLE_BRANCH') }}-{{ lookup('env','CIRCLE_BUILD_NUM') }}"
           Version: "{{ pagename }}-{{ lookup('env','CIRCLE_SHA1') }}"
-          Git: "{{ CIRCLE_REPOSITORY_URL }}"
+          Git: "{{ lookup('env','CIRCLE_REPOSITORY_URL') }}"
         default_cache_behavior:
           target_origin_id: "{{ pagename }}"
           compress: true

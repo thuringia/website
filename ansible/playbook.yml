@@ -77,6 +77,7 @@
           X-Api-Key: "{{ lookup('env','GANDI') }}"
     - name: Wait some second for dns to propagate
       wait_for: timeout=10
+      delegate_to: localhost
     - name: Wait for cert grant
       shell: >
         aws acm wait certificate-validated --certificate-arn {{ (cert.stdout|from_json).CertificateArn }}

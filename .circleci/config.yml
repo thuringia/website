@@ -7,11 +7,20 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: cd into directory
+          command: cd src
       - run:
-          name: Print the Current Time
-          command: date
+          name: Install gatsby
+          command: npm i -g gatsby-cli
+      - run:
+          name: Build
+          command: gatsby build
+      - run:
+          name: cd out of directory
+          command: cd ..
+      - run:
+          name: cp webapp
+          command: cp -r src/public/* target/
   deploy:
     working_directory: ~/page
     docker:

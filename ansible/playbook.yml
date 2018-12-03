@@ -35,7 +35,7 @@
       s3_website :
         name: "{{ pagename }}"
         region: eu-central-1
-        error_key: index.html
+        error_key: 404.html
         state: present
     - name: Upload files
       s3_sync:
@@ -46,8 +46,8 @@
         cache_control: "public, max-age=31536000, immutable"
         file_change_strategy: checksum
         mode: push
-        include: "*"
-        exclude: "*.html,.*"
+        include: "*.js,*.css"
+        exclude: "static/*,.*,idb-keyval-iife.min.js,sw.js"
     - name: Upload files
       s3_sync:
         bucket: "{{ pagename }}"
@@ -57,17 +57,37 @@
         cache_control: "public, max-age=600, stale-while-revalidate=300"
         file_change_strategy: checksum
         mode: push
-        include: "*.html"
+        include: "*"
+        exclude: "static/*,.*,*.js,*.css"
+    - name: Upload files
+      s3_sync:
+        bucket: "{{ pagename }}"
+        region: eu-central-1
+        file_root: ../target/
+        permission: public-read
+        cache_control: "public, max-age=31536000, immutable"
+        file_change_strategy: checksum
+        mode: push
+        include: "static/*"
         exclude: ".*"
-    # - name: PUT index with different meta
-    #   aws_s3:
-    #     bucket: "{{ pagename }}"
-    #     object: /index.html
-    #     src: ../target/index.html
-    #     mode: put
-    #     region: eu-central-1
-    #     encrypt: no
-    #     metadata: 'Cache-Control="public, max-age=600, stale-while-revalidate=300"'
+    - name: PUT sw.js with different meta data
+      aws_s3:
+        bucket: "{{ pagename }}"
+        object: /sw.js
+        src: ../target/sw.js
+        mode: put
+        region: eu-central-1
+        encrypt: no
+        metadata: 'Cache-Control="public, max-age=600, stale-while-revalidate=300"'
+    - name: PUT idb-keyval-iife.min.js with different meta
+      aws_s3:
+        bucket: "{{ pagename }}"
+        object: /idb-keyval-iife.min.js
+        src: ../target/idb-keyval-iife.min.js
+        mode: put
+        region: eu-central-1
+        encrypt: no
+        metadata: 'Cache-Control="public, max-age=600, stale-while-revalidate=300"'
     - name: obtain all facts for a single ACM certificate
       aws_acm_facts:
         domain_name: "{{ pagename }}.jannes.mingram.net"
@@ -130,13 +150,13 @@
         default_root_object: index.html
         ipv6_enabled: yes
         custom_error_responses:
-          - response_code: 200
+          - response_code: 404
             error_caching_min_ttl: 864000
-            response_page_path: '/index.html'
+            response_page_path: '/404.html'
             error_code: 403
-          - response_code: 200
+          - response_code: 404
             error_caching_min_ttl: 864000
-            response_page_path: '/index.html'
+            response_page_path: '/404.html'
             error_code: 404
         tags:
           Name: example distribution

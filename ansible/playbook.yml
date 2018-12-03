@@ -89,6 +89,8 @@
         aliases: [ 'jmtestpage4.jannes.mingram.net', 'www.jmtestpage4.jannes.mingram.net' ]
         viewer_certificate:
           acm_certificate_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
+          certificate : "{{ (cert.stdout|from_json).CertificateArn }}
+          certificate_source: acm
         tags:
           Name: example distribution
           Project: example project

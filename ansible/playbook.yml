@@ -6,7 +6,7 @@
   tasks:
     - name: Set pagename
       set_fact:
-        pagename: jmtestpage6
+        pagename: jmtestpage7
     - name: Install AWSCLI
       pip: name=awscli state=present
     - name: Install boto

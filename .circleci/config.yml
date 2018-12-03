@@ -27,11 +27,12 @@ jobs:
           key: gatsby-cache-v1-{{ checksum "./src/yarn.lock" }}-{{ checksum "./src/gatsby-config.js" }}
           paths:
             - /root/src/.cache
-      - run:
-          name: cp webapp
-          command: cp -r ./src/public/* ./target/
       - store_artifacts:
-          path: ./target/
+          path: ./src/public/
+      - persist_to_workspace:
+          root: ./target/
+          paths:
+            - ./src/public/*
   deploy:
     working_directory: ~/page
     docker:
@@ -42,6 +43,8 @@ jobs:
           # pip issue :( https://github.com/pyenv/pyenv/issues/1141#issuecomment-381421570
           command: python -m pip install --force-reinstall pip && pip install ansible
       - checkout
+      - attach_workspace:
+          at: ./target/
       - run:
           name: ls webapp
           command: ls -l target/

@@ -85,6 +85,9 @@
           - s3_origin_access_identity_enabled: yes
             domain_name: jmtestpage4.s3.amazonaws.com
             id: 'jmtestpage4'
+        aliases: [ 'jmtestpage4.jannes.mingram.net', 'www.jmtestpage4.jannes.mingram.net' ]
+        viewer_certificate:
+          acm_certificate_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
         tags:
           Name: example distribution
           Project: example project

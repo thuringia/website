@@ -82,7 +82,8 @@
       cloudfront_distribution:
         state: present
         origins: 
-          - domain_name: jmtestpage4.s3.amazonaws.com
+          - s3_origin_access_identity_enabled: yes
+            domain_name: jmtestpage4.s3.amazonaws.com
             id: 'jmtestpage4'
         tags:
           Name: example distribution

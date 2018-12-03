@@ -11,7 +11,7 @@ jobs:
           command: 'sudo npm install -g npm@latest'
       - run:
           name: cd into directory.
-          command: cd src/src
+          command: cd ./src/src
       - run:
           name: ls directory
           command: ls

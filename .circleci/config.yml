@@ -6,48 +6,30 @@ jobs:
       - image: node:10.14.0
     steps:
       - checkout
-      - run:
-          name: cd into directory.
-          command: cd ./src
-      - run:
-          name: ls directory (1)
-          command: ls
-      - run:
-          name: cd into directory.
-          command: cd src
-      - run:
-          name: ls directory (2)
-          command: ls
       - restore_cache: # special step to restore the dependency cache
           key: dependency-cache-v1-{{ checksum "./src/yarn.lock" }}
       - run:
           name: Install gatsby
-          command: npm i -g gatsby-cli
+          command: cd src && npm i -g gatsby-cli
       - run:
           name: install-yarn packages
-          command: yarn
+          command: cd src && yarn
       - save_cache: # special step to save the dependency cache
           key: dependency-cache-v1-{{ checksum "./src/yarn.lock" }}
           paths:
-            - ./node_modules
+            - ./src/node_modules
       - restore_cache: # special step to restore the dependency cache
           key: gatsby-cache-v1-{{ checksum "./src/yarn.lock" }}-{{ checksum "./src/gatsby-config.js" }}
       - run:
           name: Build
-          command: gatsby build
+          command: cd src && gatsby build
       - save_cache: # special step to save the dependency cache
           key: gatsby-cache-v1-{{ checksum "./src/yarn.lock" }}-{{ checksum "./src/gatsby-config.js" }}
           paths:
             - /root/src/.cache
       - run:
-          name: cd out of directory
-          command: cd ..
-      - run:
           name: cp webapp
           command: cp -r src/public/* target/
-      - run:
-          name: cd out of directory
-          command: cd ..
   deploy:
     working_directory: ~/page
     docker:

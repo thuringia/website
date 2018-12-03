@@ -80,7 +80,7 @@
       delegate_to: localhost
     - name: Wait for cert grant
       shell: >
-        aws acm wait certificate-validated --certificate-arn {{ (cert.stdout|from_json).CertificateArn }}
+        aws acm wait certificate-validated --certificate-arn {{ (cert.stdout|from_json).CertificateArn }} --region us-east-1
     - name: Wait some second until certificate grant has propagated
       wait_for: timeout=10
       delegate_to: localhost

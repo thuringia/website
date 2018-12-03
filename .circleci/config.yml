@@ -31,7 +31,7 @@ jobs:
           path: ./src/public/
       - run:
           name: Copy app-files
-          command: cp -r ./src/public/* ./target
+          command: cp -r ./src/public/* ./target/
       - persist_to_workspace:
           root: .
           paths:

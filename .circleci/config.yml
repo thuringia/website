@@ -42,7 +42,9 @@ jobs:
           name: Install System Packages
           # pip issue :( https://github.com/pyenv/pyenv/issues/1141#issuecomment-381421570
           command: python -m pip install --force-reinstall pip && pip install ansible
-
+      - run:
+          name: ls webapp
+          command: ls -l ./target/
       - checkout
       - restore_cache:
           key: page-{{ .Branch }}-{{ checksum "./ansible/playbook.yml" }}-v1

@@ -139,7 +139,10 @@
         var: cloudfront_details
     - name: DEBUG
       debug:
-        var: ansible_facts['cloudfront']['www.my-website.com']        
+        var: ansible_facts['cloudfront']['{{ pagename }}.jannes.mingram.net']
+    - name: DEBUG DOMAIN
+      debug:
+        msg: "{{ cloudfront_details.ansible_facts.cloudfront[{{ pagename }}.jannes.mingram.net].Distribution.DomainName }}"
 
         
         

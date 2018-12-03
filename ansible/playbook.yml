@@ -6,7 +6,7 @@
   tasks:
     - name: Set pagename
       set_fact:
-        pagename: jmtestpage4
+        pagename: jmtestpage5
     - name: Install AWSCLI
       pip: name=awscli state=present
     - name: Create acm cert request

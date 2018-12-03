@@ -25,7 +25,7 @@ jobs:
       - checkout
       - restore_cache:
           key: page-{{ .Branch }}-{{ checksum "./ansible/playbook.yml" }}-v1
-      - run: ansible-playbook -v ansible/playbook.yml
+      - run: ansible-playbook -vvv ansible/playbook.yml
       - save_cache:
           key: page-{{ .Branch }}-{{ checksum "./ansible/playbook.yml" }}-v1
           paths:

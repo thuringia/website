@@ -11,7 +11,7 @@ jobs:
           command: 'sudo npm install -g npm@latest'
       - run:
           name: cd into directory
-          command: cd src
+          command: cd src/src
       - run:
           name: ls directory
           command: ls
@@ -42,6 +42,9 @@ jobs:
       - run:
           name: cp webapp
           command: cp -r src/public/* target/
+      - run:
+          name: cd out of directory
+          command: cd ..
   deploy:
     working_directory: ~/page
     docker:

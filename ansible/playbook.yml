@@ -75,11 +75,13 @@
         headers:
           Content-Type: "application/json"
           X-Api-Key: "{{ lookup('env','GANDI') }}"
+    - name: Wait some second for dns to propagate
+      wait_for: timeout=10
     - name: Wait for cert grant
       shell: >
-        aws acm certificate-validated --certificate-arn {{ (cert.stdout|from_json).CertificateArn }}
-    - name: Sleep for 30 seconds and continue with play
-      wait_for: timeout=30
+        aws acm wait certificate-validated --certificate-arn {{ (cert.stdout|from_json).CertificateArn }}
+    - name: Wait some second until certificate grant has propagated
+      wait_for: timeout=10
       delegate_to: localhost
     - name: Setup cloudfront
       cloudfront_distribution:

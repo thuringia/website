@@ -30,9 +30,8 @@ jobs:
       - run:
           name: cp webapp
           command: cp -r ./src/public/* ./target/
-      - run:
-          name: ls webapp
-          command: ls -l ./target/
+      - store_artifacts:
+          path: ./target/
   deploy:
     working_directory: ~/page
     docker:

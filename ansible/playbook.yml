@@ -145,7 +145,7 @@
         url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
         method: POST
         body: "{
-             \"rrset_name\": \"{{ pagename }}.jannes.mingram.net\",
+             \"rrset_name\": \"{{ pagename }}.jannes\",
              \"rrset_type\": \"CNAME\",
              \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400
@@ -163,7 +163,7 @@
         url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
         method: POST
         body: "{
-             \"rrset_name\": \"www.{{ pagename }}.jannes.mingram.net\",
+             \"rrset_name\": \"www.{{ pagename }}.jannes\",
              \"rrset_type\": \"CNAME\",
              \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400

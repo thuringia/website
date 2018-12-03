@@ -47,7 +47,7 @@ jobs:
           command: python -m pip install --force-reinstall pip && pip install ansible
       - checkout
       - attach_workspace:
-          at: ./target/
+          at: .
       - run:
           name: ls webapp
           command: ls -l target/

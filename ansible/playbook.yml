@@ -57,7 +57,7 @@
         cache_control: "public, max-age=600, stale-while-revalidate=300"
         file_change_strategy: checksum
         mode: push
-        include: " *.html,icon-*.png,idb-keyval-iife.min.js,sw.js,chunk-map.json,manifest.webmanifest,robots.txt,sitemap.xml,webpack.stats.json"
+        include: "*.html,icon-*.png,idb-keyval-iife.min.js,sw.js,chunk-map.json,manifest.webmanifest,robots.txt,sitemap.xml,webpack.stats.json"
         exclude: ".*"
     - name: PUT sw.js with different meta data
       aws_s3:

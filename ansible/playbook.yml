@@ -78,7 +78,6 @@
         default_origin_domain_name: jmtestpage4.s3.amazonaws.com
         aliases: [ 'jmtestpage4.jannes.mingram.net', 'www.jmtestpage4.jannes.mingram.net' ]
         default_cache_behavior:
-          target_origin_id: 'jmtestpage4.s3.amazonaws.com'
           compress: true
           viewer_protocol_policy: redirect-to-https
           allowed_methods:

@@ -81,6 +81,7 @@
     - name: Setup cloudfront
       cloudfront_distribution:
         state: present
+        enabled: no
         origins: 
           - s3_origin_access_identity_enabled: yes
             domain_name: jmtestpage4.s3.amazonaws.com

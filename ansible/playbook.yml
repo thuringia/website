@@ -53,6 +53,7 @@
         src: ../target/index.html
         mode: put
         region: eu-central-1
+        encrypt: no
         metadata: 'Cache-Control="public, max-age=600, stale-while-revalidate=300"'
     - name: obtain all facts for a single ACM certificate
       aws_acm_facts:

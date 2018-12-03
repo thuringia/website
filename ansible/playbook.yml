@@ -4,14 +4,17 @@
   gather_facts: False
   
   tasks:
+    - name: Set pagename
+      set_fact:
+        pagename: jmtestpage4
     - name: Install AWSCLI
       pip: name=awscli state=present
     - name: Create acm cert request
       shell: >
-        aws acm request-certificate --domain-name jmtestpage4.jannes.mingram.net
+        aws acm request-certificate --domain-name {{ pagename }}.jannes.mingram.net
         --validation-method DNS
-        --subject-alternative-names www.jmtestpage4.jannes.mingram.net
-        --idempotency-token jmtestpage4
+        --subject-alternative-names www.{{ pagename }}.jannes.mingram.net
+        --idempotency-token {{ pagename }}
         --region us-east-1
       register: cert
     - name: Safe cert details
@@ -19,18 +22,18 @@
         acm_item_cert_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
     - name: Create an Bucket
       s3_bucket:
-        name: jmtestpage4
+        name: "{{ pagename }}"
         region: eu-central-1
       register: bucket_details
     - name: Configure bucket as website
       s3_website :
-        name: jmtestpage4
+        name: "{{ pagename }}"
         region: eu-central-1
         error_key: index.html
         state: present
     - name: Upload files
       s3_sync:
-        bucket: jmtestpage4
+        bucket: "{{ pagename }}"
         region: eu-central-1
         file_root: ../target/
         permission: public-read
@@ -39,7 +42,7 @@
         mode: push
     - name: obtain all facts for a single ACM certificate
       aws_acm_facts:
-        domain_name: "jmtestpage4.jannes.mingram.net"
+        domain_name: "{{ pagename }}.jannes.mingram.net"
         region: us-east-1
       register: cert_details
     - name: Creat DNS entry 1
@@ -72,21 +75,15 @@
         headers:
           Content-Type: "application/json"
           X-Api-Key: "{{ lookup('env','GANDI') }}"    
-    - name: Details about cert-id
-      debug:
-        msg: "{{ (cert.stdout|from_json).CertificateArn }}"
-    - name: Details about bucket
-      debug:
-        var: bucket_details
     - name: Setup cloudfront
       cloudfront_distribution:
         state: present
         enabled: no
         origins: 
           - s3_origin_access_identity_enabled: yes
-            domain_name: jmtestpage4.s3.amazonaws.com
-            id: 'jmtestpage4'
-        aliases: [ 'jmtestpage4.jannes.mingram.net', 'www.jmtestpage4.jannes.mingram.net' ]
+            domain_name: "{{ pagename }}.s3.amazonaws.com"
+            id: "{{ pagename }}"
+        aliases: [ '{{ pagename }}.jannes.mingram.net', 'www.{{ pagename }}.jannes.mingram.net' ]
         viewer_certificate:
           acm_certificate_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
           certificate : "{{ (cert.stdout|from_json).CertificateArn }}"
@@ -109,7 +106,7 @@
           Project: example project
           Priority: '1'
         default_cache_behavior:
-          target_origin_id: 'jmtestpage4'
+          target_origin_id: "{{ pagename }}"
           compress: true
           viewer_protocol_policy: redirect-to-https
           forwarded_values:

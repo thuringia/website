@@ -7,9 +7,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: update-npm
-          command: 'sudo npm install -g npm@latest'
-      - run:
           name: cd into directory.
           command: cd ./src
       - run:

@@ -6,7 +6,7 @@
   tasks:
     - name: Set pagename
       set_fact:
-        pagename: jmtestpage5
+        pagename: jmtestpage6
     - name: Install AWSCLI
       pip: name=awscli state=present
     - name: Create acm cert request
@@ -134,14 +134,37 @@
       cloudfront_facts:
         distribution: true
         domain_name_alias: www.{{ pagename }}.jannes.mingram.net
-    - name: DEBUG (1)
-      debug:
-        msg: "{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}"
-    - name: Set pagename
-      set_fact:
-        cloudfronturl: ansible_facts['cloudfront']['{{ pagename }}.jannes.mingram.net'].Distribution.DomainName
-    - name: DEBUG DOMAIN
-      debug:
-        msg: "{{ cloudfronturl }}"
-
+    - name: Switch dns entry over (no www)
+      uri:
+        url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
+        method: POST
+        body: "{
+             \"rrset_name\": \"{{ pagename }}.jannes.mingram.net\",
+             \"rrset_type\": \"CNAME\",
+             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}\"],
+             \"rrset_ttl\": 86400
+             }"
+        status_code: 201, 200
+        body_format: json
+        headers:
+          Content-Type: "application/json"
+          X-Api-Key: "{{ lookup('env','GANDI') }}"
+    - name: Wait some second for dns to propagate
+      wait_for: timeout=10
+      delegate_to: localhost
+    - name: Switch dns entry over (with www)
+      uri:
+        url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
+        method: POST
+        body: "{
+             \"rrset_name\": \"www.{{ pagename }}.jannes.mingram.net\",
+             \"rrset_type\": \"CNAME\",
+             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}\"],
+             \"rrset_ttl\": 86400
+             }"
+        status_code: 201, 200
+        body_format: json
+        headers:
+          Content-Type: "application/json"
+          X-Api-Key: "{{ lookup('env','GANDI') }}"     
         

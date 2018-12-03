@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/page
     docker:
-      - image: circleci/node:4.8.2
+      - image: node:10.14.0
     steps:
       - checkout
       - run:
@@ -11,12 +11,15 @@ jobs:
           command: 'sudo npm install -g npm@latest'
       - run:
           name: cd into directory.
-          command: cd ./src/src
+          command: cd ./src
+      - run:
+          name: cd into directory.
+          command: cd ./src
       - run:
           name: ls directory
           command: ls
       - restore_cache: # special step to restore the dependency cache
-          key: dependency-cache-v1-{{ checksum "./yarn.lock" }}
+          key: dependency-cache-v1-{{ checksum "./src/yarn.lock" }}
       - run:
           name: Install gatsby
           command: npm i -g gatsby-cli
@@ -24,18 +27,18 @@ jobs:
           name: install-yarn packages
           command: yarn
       - save_cache: # special step to save the dependency cache
-          key: dependency-cache-v1-{{ checksum "./yarn.lock" }}
+          key: dependency-cache-v1-{{ checksum "./src/yarn.lock" }}
           paths:
             - ./node_modules
       - restore_cache: # special step to restore the dependency cache
-          key: gatsby-cache-v1-{{ checksum "./yarn.lock" }}-{{ checksum "gatsby-config.js" }}
+          key: gatsby-cache-v1-{{ checksum "./src/yarn.lock" }}-{{ checksum "./src/gatsby-config.js" }}
       - run:
           name: Build
           command: gatsby build
       - save_cache: # special step to save the dependency cache
-          key: gatsby-cache-v1-{{ checksum "./yarn.lock" }}-{{ checksum "gatsby-config.js" }}
+          key: gatsby-cache-v1-{{ checksum "./src/yarn.lock" }}-{{ checksum "./src/gatsby-config.js" }}
           paths:
-            - ./.cache
+            - /root/src/.cache
       - run:
           name: cd out of directory
           command: cd ..

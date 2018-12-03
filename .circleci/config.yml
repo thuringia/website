@@ -10,7 +10,7 @@ jobs:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
       - run:
-          name: cd into directory
+          name: cd into directory.
           command: cd src/src
       - run:
           name: ls directory

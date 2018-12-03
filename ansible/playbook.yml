@@ -89,20 +89,18 @@
               - GET
               - HEAD
         custom_error_responses:
-          items:
-            - response_code: 403
-              error_caching_min_ttl: 60000
-              response_page_path: index.html
-              error_code: 200
-            - response_code: 404
-              error_caching_min_ttl: 60000
-              response_page_path: index.html
-              error_code: 200
+          - response_code: 403
+            error_caching_min_ttl: 60000
+            response_page_path: index.html
+            error_code: 200
+          - response_code: 404
+            error_caching_min_ttl: 60000
+            response_page_path: index.html
+            error_code: 200
         default_root_object: index.html
         enabled: yes
         ipv6_enabled: yes
         region: eu-central-1
-        state: present
         viewer_certificate:
           acm_certificate_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
         

@@ -75,3 +75,6 @@
         headers:
           Content-Type: "application/json"
           X-Api-Key: "{{ lookup('env','GANDI') }}"    
+    - name: Details about cert-id
+      debug:
+        msg: "{{ (cert.stdout|from_json).CertificateArn }}"

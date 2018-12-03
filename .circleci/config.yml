@@ -29,10 +29,13 @@ jobs:
             - /root/src/.cache
       - store_artifacts:
           path: ./src/public/
+      - run:
+          name: Copy app-files
+          command: cp -r ./src/public/* ./target
       - persist_to_workspace:
-          root: ./target/
+          root: .
           paths:
-            - ./src/public/*
+            - ./target/*
   deploy:
     working_directory: ~/page
     docker:

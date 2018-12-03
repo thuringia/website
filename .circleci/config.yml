@@ -10,10 +10,13 @@ jobs:
           name: cd into directory.
           command: cd ./src
       - run:
-          name: cd into directory.
-          command: cd ./src
+          name: ls directory (1)
+          command: ls
       - run:
-          name: ls directory
+          name: cd into directory.
+          command: cd src
+      - run:
+          name: ls directory (2)
           command: ls
       - restore_cache: # special step to restore the dependency cache
           key: dependency-cache-v1-{{ checksum "./src/yarn.lock" }}

@@ -81,7 +81,9 @@
     - name: Setup cloudfront
       cloudfront_distribution:
         state: present
-        default_origin_domain_name: jmtestpage4.s3.amazonaws.com
+        origins: 
+          - domain_name: jmtestpage4.s3.amazonaws.com
+            id: 'jmtestpage4'
         tags:
           Name: example distribution
           Project: example project

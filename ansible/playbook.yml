@@ -74,7 +74,13 @@
         body_format: json
         headers:
           Content-Type: "application/json"
-          X-Api-Key: "{{ lookup('env','GANDI') }}"    
+          X-Api-Key: "{{ lookup('env','GANDI') }}"
+    - name: Wait for cert grant
+      shell: >
+        aws acm certificate-validated --certificate-arn {{ (cert.stdout|from_json).CertificateArn }}
+    - name: Sleep for 30 seconds and continue with play
+      wait_for: timeout=30
+      delegate_to: localhost
     - name: Setup cloudfront
       cloudfront_distribution:
         state: present

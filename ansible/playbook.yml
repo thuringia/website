@@ -134,15 +134,14 @@
       cloudfront_facts:
         distribution: true
         domain_name_alias: www.{{ pagename }}.jannes.mingram.net
-    - name: DEBUG
+    - name: DEBUG (1)
       debug:
-        var: cloudfront_details
-    - name: DEBUG
-      debug:
-        var: ansible_facts['cloudfront']['{{ pagename }}.jannes.mingram.net']
+        msg: "{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}"
+    - name: Set pagename
+      set_fact:
+        cloudfronturl: ansible_facts['cloudfront']['{{ pagename }}.jannes.mingram.net'].Distribution.DomainName
     - name: DEBUG DOMAIN
       debug:
-        msg: "{{ cloudfront_details.ansible_facts.cloudfront[{{ pagename }}.jannes.mingram.net].Distribution.DomainName }}"
+        msg: "{{ cloudfronturl }}"
 
-        
         

@@ -11,7 +11,10 @@ jobs:
           command: 'sudo npm install -g npm@latest'
       - run:
           name: cd into directory
-          command: cd src
+          command: cd ../src
+      - run:
+          name: ls directory
+          command: ls
       - restore_cache: # special step to restore the dependency cache
           key: dependency-cache-v1-{{ checksum "./yarn.lock" }}
       - run:

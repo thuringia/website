@@ -147,7 +147,7 @@
         body: "{
              \"rrset_name\": \"{{ pagename }}.jannes.mingram.net\",
              \"rrset_type\": \"CNAME\",
-             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}\"],
+             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400
              }"
         status_code: 201, 200
@@ -165,7 +165,7 @@
         body: "{
              \"rrset_name\": \"www.{{ pagename }}.jannes.mingram.net\",
              \"rrset_type\": \"CNAME\",
-             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}\"],
+             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400
              }"
         status_code: 201, 200

@@ -6,7 +6,13 @@
   tasks:
     - name: Set pagename
       set_fact:
-        pagename: jmtestpage7
+        pagename: deadbear
+    - name: Set suffix
+      set_fact:
+        suffix: de
+    - name: Set dnsname
+      set_fact:
+        dnsname: deadbear.de
     - name: Install AWSCLI
       pip: name=awscli state=present
     - name: Install boto
@@ -17,9 +23,9 @@
       pip: name=botocore state=present
     - name: Create acm cert request
       shell: >
-        aws acm request-certificate --domain-name {{ pagename }}.jannes.mingram.net
+        aws acm request-certificate --domain-name {{ pagename }}.{{ suffix }}
         --validation-method DNS
-        --subject-alternative-names www.{{ pagename }}.jannes.mingram.net
+        --subject-alternative-names www.{{ pagename }}.{{ suffix }}
         --idempotency-token {{ pagename }}
         --region us-east-1
       register: cert
@@ -70,12 +76,12 @@
         metadata: 'Cache-Control="public, max-age=1200, stale-while-revalidate=600"'
     - name: obtain all facts for a single ACM certificate
       aws_acm_facts:
-        domain_name: "{{ pagename }}.jannes.mingram.net"
+        domain_name: "{{ pagename }}.{{ suffix }}"
         region: us-east-1
       register: cert_details
     - name: Creat DNS entry 1
       uri:
-        url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
+        url: "https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records"
         method: POST
         body: "{
              \"rrset_name\": \"{{ cert_details.certificates[0].domain_validation_options[0].resource_record.name }}\",
@@ -90,7 +96,7 @@
           X-Api-Key: "{{ lookup('env','GANDI') }}"
     - name: Creat DNS entry 2
       uri:
-        url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
+        url: "https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records"
         method: POST
         body: "{
              \"rrset_name\": \"{{ cert_details.certificates[0].domain_validation_options[1].resource_record.name }}\",
@@ -120,7 +126,7 @@
           - s3_origin_access_identity_enabled: yes
             domain_name: "{{ pagename }}.s3.amazonaws.com"
             id: "{{ pagename }}"
-        aliases: [ '{{ pagename }}.jannes.mingram.net', 'www.{{ pagename }}.jannes.mingram.net' ]
+        aliases: [ '{{ pagename }}.{{ suffix }}', 'www.{{ pagename }}.{{ suffix }}' ]
         viewer_certificate:
           acm_certificate_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
           certificate : "{{ (cert.stdout|from_json).CertificateArn }}"
@@ -161,15 +167,15 @@
       register: cloudfront_details
       cloudfront_facts:
         distribution: true
-        domain_name_alias: www.{{ pagename }}.jannes.mingram.net
+        domain_name_alias: www.{{ pagename }}.{{ suffix }}
     - name: Switch dns entry over (no www)
       uri:
-        url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
+        url: "https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records"
         method: POST
         body: "{
-             \"rrset_name\": \"{{ pagename }}.jannes\",
+             \"rrset_name\": \"{{ pagename }}.{{ suffix }}\",
              \"rrset_type\": \"CNAME\",
-             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}.\"],
+             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.' + suffix].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400
              }"
         status_code: 201, 200
@@ -185,9 +191,9 @@
         url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
         method: POST
         body: "{
-             \"rrset_name\": \"www.{{ pagename }}.jannes\",
+             \"rrset_name\": \"www.{{ pagename }}.{{ suffix }}\",
              \"rrset_type\": \"CNAME\",
-             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.jannes.mingram.net'].Distribution.DomainName }}.\"],
+             \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.' + suffix].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400
              }"
         status_code: 201, 200

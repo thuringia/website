@@ -36,11 +36,11 @@
         --idempotency-token {{ pagename }}
         --region us-east-1
       register: cert
-    - name: Safe cert details (reusing old cert)
+    - name: Safe cert details (new cert)
       when: cert_details_0.certificates[0] is not defined
       set_fact:
         acm_item_cert_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
-    - name: Safe cert details (new cert)
+    - name: Safe cert details (old cert)
       when: cert_details_0.certificates[0] is defined
       set_fact:
         acm_item_cert_arn: "{{ cert_details_0.certificates[0].certificate_arn }}"

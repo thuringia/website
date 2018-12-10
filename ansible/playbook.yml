@@ -136,8 +136,7 @@
         state: present
         enabled: yes
         origins: 
-          - s3_origin_access_identity_enabled: no
-            domain_name: "{{ pagename }}.s3-website.eu-central-1.amazonaws.com"
+          - domain_name: "{{ pagename }}.s3-website.eu-central-1.amazonaws.com"
             id: "{{ pagename }}"
         aliases: [ '{{ pagename }}.{{ suffix }}', 'www.{{ pagename }}.{{ suffix }}' ]
         viewer_certificate:

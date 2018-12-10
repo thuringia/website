@@ -12,7 +12,7 @@
         suffix: de
     - name: Set dnsname variable
       set_fact:
-        dnsname: "{{ pagename }}.{{ suffix }}"
+        dnsname: deadbears.de
     - name: Install AWSCLI
       pip: name=awscli state=present
     - name: Install boto

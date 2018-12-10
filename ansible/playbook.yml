@@ -82,6 +82,7 @@
         bucket: "{{ pagename }}"
         object: /sw.js
         src: ../target/sw.js
+        permission: public-read
         mode: put
         region: eu-central-1
         encrypt: no
@@ -200,7 +201,7 @@
       delegate_to: localhost
     - name: Switch dns entry over (no www)
       uri:
-        url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
+        url: https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records
         method: POST
         body: "{
              \"rrset_name\": \"{{ pagename }}.{{ suffix }}.\",

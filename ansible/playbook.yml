@@ -4,15 +4,15 @@
   gather_facts: False
   
   tasks:
-    - name: Set pagename
+    - name: Set pagename variable
       set_fact:
-        pagename: deadbear
-    - name: Set suffix
+        pagename: deadbears
+    - name: Set suffix variable
       set_fact:
         suffix: de
-    - name: Set dnsname
+    - name: Set dnsname variable
       set_fact:
-        dnsname: deadbear.de
+        dnsname: "{{ pagename }}.{{ suffix }}"
     - name: Install AWSCLI
       pip: name=awscli state=present
     - name: Install boto
@@ -21,7 +21,14 @@
       pip: name=boto3 state=present
     - name: Install botocore
       pip: name=botocore state=present
+
+    - name: obtain all facts for a single ACM certificate
+      aws_acm_facts:
+        domain_name: "{{ pagename }}.{{ suffix }}"
+        region: us-east-1
+      register: cert_details_0
     - name: Create acm cert request
+      when: cert_details_0.certificates[0] is not defined
       shell: >
         aws acm request-certificate --domain-name {{ pagename }}.{{ suffix }}
         --validation-method DNS
@@ -29,9 +36,14 @@
         --idempotency-token {{ pagename }}
         --region us-east-1
       register: cert
-    - name: Safe cert details
+    - name: Safe cert details (reusing old cert)
+      when: cert_details_0.certificates[0] is not defined
       set_fact:
         acm_item_cert_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
+    - name: Safe cert details (new cert)
+      when: cert_details_0.certificates[0] is defined
+      set_fact:
+        acm_item_cert_arn: "{{ cert_details_0.certificates[0].certificate_arn }}"
     - name: Create an Bucket
       s3_bucket:
         name: "{{ pagename }}"
@@ -114,7 +126,7 @@
       delegate_to: localhost
     - name: Wait for cert grant
       shell: >
-        aws acm wait certificate-validated --certificate-arn {{ (cert.stdout|from_json).CertificateArn }} --region us-east-1
+        aws acm wait certificate-validated --certificate-arn {{ acm_item_cert_arn }} --region us-east-1
     - name: Wait some second until certificate grant has propagated
       wait_for: timeout=10
       delegate_to: localhost
@@ -128,8 +140,8 @@
             id: "{{ pagename }}"
         aliases: [ '{{ pagename }}.{{ suffix }}', 'www.{{ pagename }}.{{ suffix }}' ]
         viewer_certificate:
-          acm_certificate_arn: "{{ (cert.stdout|from_json).CertificateArn }}"
-          certificate : "{{ (cert.stdout|from_json).CertificateArn }}"
+          acm_certificate_arn: "{{ acm_item_cert_arn }}"
+          certificate : "{{ acm_item_cert_arn }}"
           certificate_source: acm
           ssl_support_method: sni-only
           minimum_protocol_version: "TLSv1.2_2018"
@@ -168,12 +180,12 @@
       cloudfront_facts:
         distribution: true
         domain_name_alias: www.{{ pagename }}.{{ suffix }}
-    - name: Switch dns entry over (no www)
+    - name: Switch dns entry over (www)
       uri:
         url: "https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records"
         method: POST
         body: "{
-             \"rrset_name\": \"{{ pagename }}.{{ suffix }}\",
+             \"rrset_name\": \"www.{{ pagename }}.{{ suffix }}.\",
              \"rrset_type\": \"CNAME\",
              \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.' + suffix].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400
@@ -186,12 +198,12 @@
     - name: Wait some second for dns to propagate
       wait_for: timeout=10
       delegate_to: localhost
-    - name: Switch dns entry over (with www)
+    - name: Switch dns entry over (no www)
       uri:
         url: https://dns.api.gandi.net/api/v5/domains/mingram.net/records
         method: POST
         body: "{
-             \"rrset_name\": \"www.{{ pagename }}.{{ suffix }}\",
+             \"rrset_name\": \"{{ pagename }}.{{ suffix }}.\",
              \"rrset_type\": \"CNAME\",
              \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.' + suffix].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400

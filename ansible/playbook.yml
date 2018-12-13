@@ -184,7 +184,7 @@
     - name: create a batch of invalidations using a distribution_id for a reference
       when: "'diff' in cloudfrontdistribution"
       cloudfront_invalidation:
-        alias: [ '{{ pagename }}.{{ suffix }}', 'www.{{ pagename }}.{{ suffix }}' ]
+        alias: 'www.{{ pagename }}.{{ suffix }}'
         target_paths:
           - /*
     - name: Obtain cloudfront url for cname

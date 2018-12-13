@@ -182,7 +182,7 @@
     - debug:
         var: cloudfrontdistribution.diff
     - name: create a batch of invalidations using a distribution_id for a reference
-      when: 'diff' in cloudfrontdistribution
+      when: "'diff' in cloudfrontdistribution"
       cloudfront_invalidation:
         alias: [ '{{ pagename }}.{{ suffix }}', 'www.{{ pagename }}.{{ suffix }}' ]
         target_paths:

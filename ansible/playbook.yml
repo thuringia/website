@@ -72,7 +72,7 @@
         region: eu-central-1
         file_root: ../target/
         permission: public-read
-        cache_control: "public, max-age=600, stale-while-revalidate=300"
+        cache_control: "public, max-age=0, s-maxage=31536000, must-revalidate, stale-while-revalidate=2628000, stale-if-error=604800"
         file_change_strategy: checksum
         mode: push
         include: "*.html,icon-*.png,idb-keyval-iife.min.js,sw.js,chunk-map.json,manifest.webmanifest,robots.txt,sitemap.xml,webpack.stats.json"
@@ -86,7 +86,7 @@
         mode: put
         region: eu-central-1
         encrypt: no
-        metadata: 'Cache-Control="public, max-age=1200, stale-while-revalidate=600"'
+        metadata: 'Cache-Control="public, max-age=0, s-maxage=31536000, must-revalidate, stale-if-error=604800"'
     - name: obtain all facts for a single ACM certificate
       aws_acm_facts:
         domain_name: "{{ pagename }}.{{ suffix }}"
@@ -132,6 +132,7 @@
       wait_for: timeout=10
       delegate_to: localhost
     - name: Setup cloudfront
+      register: cloudfrontdistribution
       cloudfront_distribution:
         state: present
         enabled: yes
@@ -178,6 +179,14 @@
             cached_methods:
               - GET
               - HEAD
+    - debug:
+        var: cloudfrontdistribution.diff
+    - name: create a batch of invalidations using a distribution_id for a reference
+      when: cloudfrontdistribution.diff
+      cloudfront_invalidation:
+        aliases: [ '{{ pagename }}.{{ suffix }}', 'www.{{ pagename }}.{{ suffix }}' ]
+        target_paths:
+          - /*
     - name: Obtain cloudfront url for cname
       register: cloudfront_details
       cloudfront_facts:

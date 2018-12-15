@@ -98,7 +98,7 @@
         cache_control: "public, max-age=0, s-maxage=31536000, must-revalidate, stale-while-revalidate=2628000, stale-if-error=604800"
         file_change_strategy: checksum
         mode: push
-        include: "*.html,icon-*.png,idb-keyval-iife.min.js,sw.js,chunk-map.json,manifest.webmanifest,robots.txt,sitemap.xml,webpack.stats.json"
+        include: "*.html,icon-*.png,idb-keyval-iife.min.js,sw.js,SHAs.json,chunk-map.json,manifest.webmanifest,robots.txt,sitemap.xml,webpack.stats.json"
         exclude: ".*"
     - name: PUT sw.js with different meta data
       aws_s3:
@@ -192,7 +192,7 @@
           compress: true
           viewer_protocol_policy: redirect-to-https
           lambda_function_associations:
-            - lambda_function_arn: arn:aws:lambda:us-east-1:157114673671:function:addSecurityHeaders:7
+            - lambda_function_arn: arn:aws:lambda:us-east-1:157114673671:function:addSecurityHeaders:9
               event_type: origin-response
           forwarded_values:
             query_string: false

@@ -85,11 +85,11 @@
         region: eu-central-1
         rules:
           - allowed_origins:
-              - *
+              - "*"
             allowed_methods:
               - GET
             allowed_headers:
-              - *
+              - "*"
     - name: Upload files
       s3_sync:
         bucket: "{{ pagename }}"
@@ -210,13 +210,19 @@
             query_string: false
             cookies:
               forward: none
+            headers:
+             - 'Origin'
+             - 'Access-Control-Request-Headers'
+             - 'Access-Control-Request-Method'
           allowed_methods:
             items:
               - GET
               - HEAD
+              - OPTIONS
             cached_methods:
               - GET
               - HEAD
+              - OPTIONS
     - name: create a batch of invalidations using a distribution_id for a reference
       when: "'diff' in cloudfrontdistribution"
       cloudfront_invalidation:

@@ -13,6 +13,19 @@
     - name: Set dnsname variable
       set_fact:
         dnsname: deadbear.de
+    - name: Set tCustomer variable
+      set_fact:
+        tCustomer: dead_and_bear
+    - name: Set tName variable
+      set_fact:
+        tName: "{{ pagename }}-{{ lookup('env','CIRCLE_BRANCH') }}-{{ lookup('env','CIRCLE_BUILD_NUM') }}"
+    - name: Set tVersion variable
+      set_fact:
+        tVersion: "{{ pagename }}-{{ lookup('env','CIRCLE_SHA1') }}"
+    - name: Set tGit variable
+      set_fact:
+        tGit: "{{ lookup('env','CIRCLE_REPOSITORY_URL') }}"
+        
     - name: Install AWSCLI
       pip: name=awscli state=present
     - name: Install boto
@@ -44,10 +57,20 @@
       when: cert_details_0.certificates[0] is defined
       set_fact:
         acm_item_cert_arn: "{{ cert_details_0.certificates[0].certificate_arn }}"
+    - name: Add tags acm cert request
+      shell: >
+        aws acm add-tags-to-certificate --certificate-arn {{ acm_item_cert_arn }}
+        --tags Key=Customer,Value={{ tCustomer }} Key=Name,Value={{ tName }} Key=Version,Value={{ tVersion }} Key=Git,Value={{ tGit }}
+        --region us-east-1
     - name: Create an Bucket
       s3_bucket:
         name: "{{ pagename }}"
         region: eu-central-1
+        tags:
+          Customer: "{{ tCustomer }}"
+          Name: "{{ tName }}"
+          Version: "{{ tVersion }}"
+          Git: "{{ tGit }}"
       register: bucket_details
     - name: Configure bucket as website
       s3_website :
@@ -158,9 +181,10 @@
             response_page_path: '/404.html'
             error_code: 404
         tags:
-          Name: "{{ pagename }}-{{ lookup('env','CIRCLE_BRANCH') }}-{{ lookup('env','CIRCLE_BUILD_NUM') }}"
-          Version: "{{ pagename }}-{{ lookup('env','CIRCLE_SHA1') }}"
-          Git: "{{ lookup('env','CIRCLE_REPOSITORY_URL') }}"
+          Name: "{{ tName }}"
+          Version: "{{ tVersion }}"
+          Git: "{{ tGit }}"
+          Customer: "{{ tCustomer }}"
         default_cache_behavior:
           target_origin_id: "{{ pagename }}"
           compress: true

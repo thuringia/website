@@ -25,10 +25,11 @@ const proms = files.filter(file => file.slice(-5) === '.html').map(file => new P
         console.log(err);
         return rej(err);
     }
-    const x = contents.match(/<script(.*?)>(.*?)<\/script>/g);
-    const y = contents.match(/<style(.*?)>(.*?)<\/style>/g);
-    const scriptSHAs = !x ? [] : x.map(i => i.match(/<script.*?>(.*?)<\/script>/)).map(getSecond).filter(hasText).map(sha256);
-    const styleSHAs = !y ? [] : y.map(i => i.match(/<style.*?>(.*?)<\/style>/)).map(getSecond).filter(hasText).map(sha256);
+    const x = contents.match(/<script(.*?)>([^]*?)<\/script>/g);
+    const y = contents.match(/<style(.*?)>([^]*?)<\/style>/g);
+    const scriptSHAs = !x ? [] : x.map(i => i.match(/<script.*?>([^]*?)<\/script>/)).map(getSecond).filter(hasText).map(sha256);
+    const styleSHAs = !y ? [] : y.map(i => i.match(/<style.*?>([^]*?)<\/style>/)).map(getSecond).filter(hasText).map(sha256);
+    console.log(`${file}: ${scriptSHAs.length} scripts, ${styleSHAs.length} styles \n`);
     return res({ scriptSHAs: scriptSHAs, styleSHAs: styleSHAs });
 })));
 

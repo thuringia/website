@@ -162,7 +162,7 @@
         origins: 
           - domain_name: "{{ pagename }}.s3-website.eu-central-1.amazonaws.com"
             id: "{{ pagename }}"
-            custom_origin_config
+            custom_origin_config:
               origin_protocol_policy: http-only
         aliases: [ '{{ pagename }}.{{ suffix }}', 'www.{{ pagename }}.{{ suffix }}' ]
         viewer_certificate:

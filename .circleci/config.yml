@@ -22,7 +22,7 @@ jobs:
           key: gatsby-cache-v1-{{ checksum "./src/yarn.lock" }}-{{ checksum "./src/gatsby-config.js" }}
       - run:
           name: Build
-          command: cd src && gatsby build
+          command: cd src && gatsby build && node ./compileSHAs.js
       - save_cache: # special step to save the dependency cache
           key: gatsby-cache-v1-{{ checksum "./src/yarn.lock" }}-{{ checksum "./src/gatsby-config.js" }}
           paths:

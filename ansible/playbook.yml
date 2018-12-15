@@ -195,7 +195,7 @@
     - name: Switch dns entry over (www)
       uri:
         url: "https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records"
-        method: POST
+        method: PUT
         body: "{
              \"rrset_name\": \"www.{{ pagename }}.{{ suffix }}.\",
              \"rrset_type\": \"CNAME\",
@@ -213,7 +213,7 @@
     - name: Switch dns entry over (no www)
       uri:
         url: https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records
-        method: POST
+        method: PUT
         body: "{
              \"rrset_name\": \"{{ pagename }}.{{ suffix }}.\",
              \"rrset_type\": \"CNAME\",

@@ -25,6 +25,12 @@ module.exports = {
     'gatsby-plugin-sitemap',
     'gatsby-plugin-lodash',
     {
+      resolve: 'gatsby-plugin-sri',
+      options: {
+        hash: 'sha512' // 'sha256', 'sha384' or 'sha512' ('sha512' = default)
+      }
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'post',

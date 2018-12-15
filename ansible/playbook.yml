@@ -195,8 +195,6 @@
         url: "https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records/www.{{ pagename }}.{{ suffix }}./CNAME"
         method: PUT
         body: "{
-             # \"rrset_name\": \"www.{{ pagename }}.{{ suffix }}.\",
-             # \"rrset_type\": \"CNAME\",
              \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.' + suffix].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400
              }"
@@ -213,8 +211,6 @@
         url: https://dns.api.gandi.net/api/v5/domains/{{ dnsname }}/records/{{ pagename }}.{{ suffix }}./CNAME
         method: PUT
         body: "{
-             # \"rrset_name\": \"{{ pagename }}.{{ suffix }}.\",
-             # \"rrset_type\": \"CNAME\",
              \"rrset_values\": [\"{{ ansible_facts['cloudfront'][pagename + '.' + suffix].Distribution.DomainName }}.\"],
              \"rrset_ttl\": 86400
              }"

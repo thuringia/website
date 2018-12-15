@@ -162,7 +162,8 @@
         origins: 
           - domain_name: "{{ pagename }}.s3-website.eu-central-1.amazonaws.com"
             id: "{{ pagename }}"
-            origin_protocol_policy: http-only
+            custom_origin_config
+              origin_protocol_policy: http-only
         aliases: [ '{{ pagename }}.{{ suffix }}', 'www.{{ pagename }}.{{ suffix }}' ]
         viewer_certificate:
           acm_certificate_arn: "{{ acm_item_cert_arn }}"
@@ -193,6 +194,7 @@
           lambda_function_associations:
             - lambda_function_arn: arn:aws:lambda:us-east-1:157114673671:function:addSecurityHeaders:5
               event_type: origin-response
+              include_body: Yes
           forwarded_values:
             query_string: false
             cookies:

@@ -78,6 +78,18 @@
         region: eu-central-1
         error_key: 404.html
         state: present
+    - name: Configure CORS on the bucket
+      aws_s3_cors:
+        name: "{{ pagename }}"
+        state: present
+        region: eu-central-1
+        rules:
+          - allowed_origins:
+              - *
+            allowed_methods:
+              - GET
+            allowed_headers:
+              - *
     - name: Upload files
       s3_sync:
         bucket: "{{ pagename }}"

@@ -6,16 +6,16 @@
   tasks:
     - name: Set pagename variable
       set_fact:
-        pagename: deadbear
+        pagename: deadbears
     - name: Set suffix variable
       set_fact:
         suffix: de
     - name: Set dnsname variable
       set_fact:
-        dnsname: deadbear.de
+        dnsname: deadbears.de
     - name: Set tCustomer variable
       set_fact:
-        tCustomer: dead_and_bear
+        tCustomer: dead_and_bears
     - name: Set tName variable
       set_fact:
         tName: "{{ pagename }}-{{ lookup('env','CIRCLE_BRANCH') }}-{{ lookup('env','CIRCLE_BUILD_NUM') }}"
@@ -78,6 +78,18 @@
         region: eu-central-1
         error_key: 404.html
         state: present
+    - name: Configure CORS on the bucket
+      aws_s3_cors:
+        name: "{{ pagename }}"
+        state: present
+        region: eu-central-1
+        rules:
+          - allowed_origins:
+              - "*"
+            allowed_methods:
+              - GET
+            allowed_headers:
+              - "*"
     - name: Upload files
       s3_sync:
         bucket: "{{ pagename }}"
@@ -192,19 +204,25 @@
           compress: true
           viewer_protocol_policy: redirect-to-https
           lambda_function_associations:
-            - lambda_function_arn: arn:aws:lambda:us-east-1:157114673671:function:addSecurityHeaders:14
+            - lambda_function_arn: arn:aws:lambda:us-east-1:157114673671:function:addSecurityHeaders:16
               event_type: origin-response
           forwarded_values:
             query_string: false
             cookies:
               forward: none
+            headers:
+             - 'Origin'
+             - 'Access-Control-Request-Headers'
+             - 'Access-Control-Request-Method'
           allowed_methods:
             items:
               - GET
               - HEAD
+              - OPTIONS
             cached_methods:
               - GET
               - HEAD
+              - OPTIONS
     - name: create a batch of invalidations using a distribution_id for a reference
       when: "'diff' in cloudfrontdistribution"
       cloudfront_invalidation:

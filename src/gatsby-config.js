@@ -24,12 +24,14 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-lodash',
+    /*
+    // can't use, because it breaks pre-load, see https://bugs.chromium.org/p/chromium/issues/detail?id=677022
     {
       resolve: 'gatsby-plugin-sri',
       options: {
         hash: 'sha512' // 'sha256', 'sha384' or 'sha512' ('sha512' = default)
       }
-    },
+    }, */
     {
       resolve: 'gatsby-source-filesystem',
       options: {

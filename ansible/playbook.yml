@@ -204,7 +204,7 @@
           compress: true
           viewer_protocol_policy: redirect-to-https
           lambda_function_associations:
-            - lambda_function_arn: arn:aws:lambda:us-east-1:157114673671:function:addSecurityHeaders:16
+            - lambda_function_arn: arn:aws:lambda:us-east-1:157114673671:function:addSecurityHeaders:17
               event_type: origin-response
           forwarded_values:
             query_string: false

@@ -6,16 +6,16 @@
   tasks:
     - name: Set pagename variable
       set_fact:
-        pagename: deadbears
+        pagename: wawrob
     - name: Set suffix variable
       set_fact:
         suffix: de
     - name: Set dnsname variable
       set_fact:
-        dnsname: deadbears.de
+        dnsname: wawrob.de
     - name: Set tCustomer variable
       set_fact:
-        tCustomer: dead_and_bears
+        tCustomer: wawrob
     - name: Set tName variable
       set_fact:
         tName: "{{ pagename }}-{{ lookup('env','CIRCLE_BRANCH') }}-{{ lookup('env','CIRCLE_BUILD_NUM') }}"

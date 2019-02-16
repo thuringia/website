@@ -9,10 +9,10 @@
         pagename: wawrob
     - name: Set suffix variable
       set_fact:
-        suffix: de
+        suffix: xyz
     - name: Set dnsname variable
       set_fact:
-        dnsname: wawrob.de
+        dnsname: wawrob.xyz
     - name: Set tCustomer variable
       set_fact:
         tCustomer: wawrob

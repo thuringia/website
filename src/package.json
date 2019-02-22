@@ -1,76 +1,83 @@
 {
-  "name": "gatsby-starter-typescirpt-power-blog-jm-website-adoption",
-  "description": "Jannes Website",
-  "version": "1.0.0",
-  "author": "Jannes Mingram (jannes@mingram.net)",
-  "keywords": [
-    "gatsby, typescript",
-    "blog"
-  ],
-  "license": "MIT",
-  "main": "n/a",
+  "name": "gatsby-starter-mate",
+  "version": "2.2.0",
+  "description": "Gatsby v2 starter to create a top notch portfolio!",
+  "main": "index.js",
   "scripts": {
-    "build": "gatsby build",
-    "start": "gatsby develop",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-    "lint": "tslint --project .",
-    "lint:fix": "tslint --fix --project .",
-    "fix": "prettier --write 'src/**/*.{ts,tsx,scss,md}' && tslint --fix 'src/**/*.{ts,tsx}' -p tsconfig.json && stylelint --fix 'src/**/*.scss' "
+    "build": "cleandir ./.cache && gatsby build",
+    "develop": "cleandir ./.cache && gatsby develop",
+    "start": "npm run develop",
+    "lint": "eslint ./src",
+    "setup": "node ./bin/setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmaSuriano/gatsby-starter-mate.git"
+  },
+  "keywords": [
+    "gatsby",
+    "starter",
+    "contentful",
+    "PWA",
+    "portfolio"
+  ],
+  "author": "Ema Suriano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EmaSuriano/gatsby-starter-mate/issues"
+  },
+  "homepage": "https://github.com/EmaSuriano/gatsby-starter-mate#readme",
+  "dependencies": {
+    "clean-dir": "^1.0.3",
+    "contentful": "^7.0.3",
+    "dotenv": "^6.0.0",
+    "envfile": "^3.0.0",
+    "gatsby": "^2.0.7",
+    "gatsby-plugin-google-analytics": "^2.0.9",
+    "gatsby-plugin-google-fonts": "^0.0.4",
+    "gatsby-plugin-manifest": "^2.0.2",
+    "gatsby-plugin-offline": "^2.0.5",
+    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-plugin-styled-components": "^3.0.0",
+    "gatsby-source-contentful": "^2.0.1",
+    "gatsby-source-medium": "^2.0.0",
+    "gatsby-transformer-remark": "^2.1.3",
+    "inquirer": "^6.2.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-fontawesome": "^1.6.1",
+    "react-headroom": "^2.2.4",
+    "react-helmet": "^5.2.0",
+    "react-markdown": "^4.0.3",
+    "react-reveal": "^1.2.2",
+    "react-scroll-section": "^1.3.0",
+    "react-text-loop": "^2.0.1",
+    "react-tippy": "^1.2.2",
+    "rebass": "^3.0.0",
+    "styled-components": "^4.0.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.117",
-    "@types/react": "^16.4.18",
-    "@types/react-dom": "^16.0.9",
-    "@types/react-helmet": "^5.0.7",
-    "@types/styled-components": "^4.0.1",
-    "@types/typography": "^0.16.0",
-    "babel-plugin-styled-components": "^1.8.0",
-    "gatsby": "^2.0.25",
-    "gatsby-plugin-catch-links": "^2.0.5",
-    "gatsby-plugin-lodash": "^3.0.1",
-    "gatsby-plugin-manifest": "^2.0.5",
-    "gatsby-plugin-offline": "^2.0.7",
-    "gatsby-plugin-react-helmet": "^3.0.0",
-    "gatsby-plugin-sass": "^2.0.1",
-    "gatsby-plugin-sitemap": "^2.0.1",
-    "gatsby-plugin-styled-components": "^3.0.0",
-    "gatsby-plugin-typescript": "^2.0.0",
-    "gatsby-plugin-typography": "^2.2.0",
-    "gatsby-remark-autolink-headers": "^2.0.7",
-    "gatsby-remark-external-links": "0.0.4",
-    "gatsby-remark-prismjs": "^3.0.2",
-    "gatsby-source-filesystem": "^2.0.4",
-    "gatsby-transformer-remark": "^2.1.7",
-    "gh-pages": "^2.0.1",
-    "husky": "^1.1.2",
-    "lint-staged": "^7.3.0",
-    "lodash": "^4.17.11",
-    "node-sass": "^4.9.4",
-    "polished": "^2.2.0",
-    "prettier": "^1.14.3",
-    "prismjs": "^1.15.0",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-helmet": "^5.2.0",
-    "react-typography": "^0.16.13",
-    "source-map-support": "latest",
-    "styled-components": "^4.0.0",
-    "stylelint": "^9.6.0",
-    "stylelint-config-css-modules": "^1.3.0",
-    "stylelint-config-prettier": "^4.0.0",
-    "stylelint-config-recommended-scss": "^3.2.0",
-    "stylelint-order": "^1.0.0",
-    "stylelint-scss": "^3.3.1",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-blvd": "^1.2.1",
-    "tslint-config-prettier": "^1.15.0",
-    "tslint-plugin-prettier": "^2.0.0",
-    "typescript": "^3.1.3",
-    "typography": "^0.16.17"
+    "chalk": "^2.4.1",
+    "contentful-import": "^7.4.0",
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.12.3",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.0"
   },
-  "dependencies": {
-    "gatsby-plugin-google-tagmanager": "^2.0.5",
-    "gatsby-plugin-sri": "^1.0.4"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

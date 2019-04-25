@@ -27,7 +27,7 @@
         tGit: "{{ lookup('env','CIRCLE_REPOSITORY_URL') }}"
     - name: Set ARN for security helper
       set_fact:
-        tSecurityHelperARN: arn:aws:lambda:us-east-1:205125228417:function:helper-lambdas-dev-addSecurityHeaders:7
+        tSecurityHelperARN: arn:aws:lambda:us-east-1:205125228417:function:helper-lambdas-dev-addSecurityHeaders:8
 
     - name: Install AWSCLI
       pip: name=awscli state=present

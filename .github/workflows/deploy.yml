@@ -30,6 +30,9 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Build
+        env:
+          ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN }}
+          SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID }}
         run: |
           cd src
           yarn install

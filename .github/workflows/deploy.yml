@@ -34,11 +34,9 @@ jobs:
           ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN }}
           SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID }}
         run: |
-          cd src
           yarn install
           yarn build
           node ./compileSHAs.js
-          cp -r ./public/* ../target/
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1

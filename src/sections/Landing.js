@@ -60,7 +60,7 @@ const LandingPage = () => (
         const { name, socialLinks, roles } = data.contentfulAbout;
 
         return (
-          <Fragment>
+          <>
             <Heading
               textAlign="center"
               as="h1"
@@ -97,7 +97,7 @@ const LandingPage = () => (
             <SectionLink section="about">
               {({ onClick }) => <MouseIcon onClick={onClick} />}
             </SectionLink>
-          </Fragment>
+          </>
         );
       }}
     />

@@ -27,7 +27,7 @@ body {
 config({ ssrFadeout: true });
 
 const Layout = ({ children }) => (
-  <Fragment>
+  <>
     <GlobalStyle />
     <ThemeProvider theme={{ colors }}>
       <ScrollingProvider>
@@ -35,7 +35,7 @@ const Layout = ({ children }) => (
         {children}
       </ScrollingProvider>
     </ThemeProvider>
-  </Fragment>
+  </>
 );
 
 Layout.propTypes = {

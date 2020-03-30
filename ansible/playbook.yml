@@ -18,13 +18,13 @@
         tCustomer: wawrob
     - name: Set tName variable
       set_fact:
-        tName: "{{ pagename }}-{{ lookup('env','CIRCLE_BRANCH') }}-{{ lookup('env','CIRCLE_BUILD_NUM') }}"
+        tName: "{{ pagename }}-master-{{ lookup('env','GITHUB_RUN_NUMBER') }}"
     - name: Set tVersion variable
       set_fact:
-        tVersion: "{{ pagename }}-{{ lookup('env','CIRCLE_SHA1') }}"
+        tVersion: "{{ pagename }}-{{ lookup('env','GITHUB_SHA') }}"
     - name: Set tGit variable
       set_fact:
-        tGit: "{{ lookup('env','CIRCLE_REPOSITORY_URL') }}"
+        tGit: "https://github.com/{{ lookup('env','GITHUB_REPOSITORY') }}"
     - name: Set ARN for security helper
       set_fact:
         tSecurityHelperARN: arn:aws:lambda:us-east-1:205125228417:function:helper-lambdas-dev-addSecurityHeaders:9

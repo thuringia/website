@@ -4,7 +4,7 @@
   "description": "Gatsby v2 starter to create a top notch portfolio!",
   "main": "index.js",
   "scripts": {
-    "build": "cleandir ./.cache && gatsby build",
+    "build": "cleandir ./.cache && gatsby build --no-uglify",
     "develop": "cleandir ./.cache && gatsby develop",
     "start": "npm run develop",
     "lint": "eslint ./src",

@@ -6,17 +6,16 @@ on:
 
 jobs:
   deploy:
-
     runs-on: ubuntu-latest
 
-    steps::boom:
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Prepare Node.js
-          uses: actions/setup-node@v1
-          with:
-            node-version: '12.x'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -36,13 +35,13 @@ jobs:
         run: yarn install
 
       - name: Build project
-        run:
-          - yarn gatsby build
-          - node ./compileSHAs.js
+        run: |
+          yarn gatsby build
+          node ./compileSHAs.js
 
       - run: cp -r ./src/public/* ./target/
 
       - name: Deploy playbook
-        uses: actions/ansible-playbook-docker-action@2.8.5
+        uses: saubermacherag/ansible-playbook-docker-action@v1.3
         with:
           playbookName: 'ansible/playbook.yml'

@@ -38,7 +38,7 @@ jobs:
           yarn install
           yarn build
           node ./compileSHAs.js
-          cp -r ./src/public/* ./target/
+          cp -r ./public/* ../target/
 
       - name: Deploy playbook
         uses: saubermacherag/ansible-playbook-docker-action@v1.3

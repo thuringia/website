@@ -29,17 +29,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - run: cd src
-
-      - name: Install packages
-        run: yarn install
-
-      - name: Build project
+      - name: Build
         run: |
+          cd src
+          yarn install
           yarn gatsby build
           node ./compileSHAs.js
-
-      - run: cp -r ./src/public/* ./target/
+          cp -r ./src/public/* ./target/
 
       - name: Deploy playbook
         uses: saubermacherag/ansible-playbook-docker-action@v1.3

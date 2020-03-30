@@ -1,26 +1,7 @@
-![Gatsby Starter Mate logo](./media/gatsby-starter-mate-logo.png)
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/EmaSuriano/gatsby-starter-mate.svg)](https://greenkeeper.io/)
-[![Travis badge](https://api.travis-ci.org/EmaSuriano/gatsby-starter-mate.svg)](https://travis-ci.org/EmaSuriano/gatsby-starter-mate)
 [![eslint](https://img.shields.io/badge/eslint-enabled-green.svg)](https://eslint.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![Maintainability](https://api.codeclimate.com/v1/badges/c8fc076b30bd493f0cfc/maintainability)](https://codeclimate.com/github/EmaSuriano/gatsby-starter-mate/maintainability)
 
-# Gatsby Starter: Mate
-
-> A portfolio starter for Gatsby integrated with Contentful CMS.
-
-The target audience are developers 💻 and tech writers ✍️.
-
-### [Demo Website](https://gatsby-starter-mate.netlify.com/)
-
-## Why? 🤔
-
-In case you are looking for a quick setup portfolio or upgrade your current, you have to definitely try Mate!
-
-This starter is totally content based on [Contentful](https://contentful.com), which is a headless CMS where you can write the content for your page. In summary, Contentful is the Model when Gatsby with React is the View.
-
-At the same time, as this portfolio is written with Gatsby is extremely easy to add more than one source of data! For example, the demo comes with an integration of [Medium](https://medium.com) posts based on a user name ✌️
+# wawrob.xyz
 
 ## Features 🛠
 
@@ -42,14 +23,6 @@ At the same time, as this portfolio is written with Gatsby is extremely easy to 
 - Google Analytics
 
 ## How to start ▶️
-
-If you never used Gatsby before, I highly recommend you to [Set up your development environment](https://www.gatsbyjs.org/tutorial/part-zero/)!
-
-To copy and install this starter run this command:
-
-```bash
-$ gatsby new mate-portofolio https://github.com/EmaSuriano/gatsby-starter-mate
-```
 
 At this point you have the repository download with all the dependencies installed, but if you try to start by running `yarn develop` you are going to received this message in the console:
 
@@ -209,14 +182,8 @@ The structure for the main page is the following:
 
 All the components inside `Layout` are `Section` components. A section can have a link inside the `Header` or not, in order to add you need to wrapped the exported `Section` with `withNavigation` HOC and it will be automatically registered (Context magic ✨).
 
-## Contributing 💪
-
-I came with the idea of creating the starter after the positive feedback I received when I deployed [my website](emasuriano.com). Therefore this starter is not perfect! I tried my best to remove all the personal information, also improve the code to make it easier to understand.
-
-I'm totally open for pull requests with bug fixes, changes in Documentation, or new features to the starter 🙌
-
-Plase check the [Contribution guidelines](CONTRIBUTING.md) before opening yours 🙏
-
 ## License 📝
 
 MIT.
+
+Based on Ema Suriano's excellent [Gatsby starter](https://github.com/EmaSuriano/gatsby-starter-mate)

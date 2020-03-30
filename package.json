@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-mate",
-  "version": "2.2.0",
-  "description": "Gatsby v2 starter to create a top notch portfolio!",
-  "main": "index.js",
+  "name": "portfolio-robert-wawrzyniak",
+  "version": "2.0.0",
+  "description": "My website powered by Gatsby",
+  "main": "src/pages/index.js",
   "scripts": {
     "build": "cleandir ./.cache && gatsby build --no-uglify",
     "develop": "cleandir ./.cache && gatsby develop",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EmaSuriano/gatsby-starter-mate.git"
+    "url": "git+https://github.com/thuringia/website.git"
   },
   "keywords": [
     "gatsby",
@@ -22,12 +22,12 @@
     "PWA",
     "portfolio"
   ],
-  "author": "Ema Suriano",
+  "author": "Robert Wawrzynian",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EmaSuriano/gatsby-starter-mate/issues"
+    "url": "https://github.com/thuringia/website/issues"
   },
-  "homepage": "https://github.com/EmaSuriano/gatsby-starter-mate#readme",
+  "homepage": "https://wawrob.xyz",
   "dependencies": {
     "clean-dir": "^1.0.3",
     "contentful": "^7.0.3",

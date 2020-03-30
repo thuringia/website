@@ -1,59 +1,59 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Image, Text, Flex, Box } from 'rebass';
-import { StaticQuery, graphql } from 'gatsby';
-import styled from 'styled-components';
-import Fade from 'react-reveal/Fade';
-import Section from '../components/Section';
-import { CardContainer, Card } from '../components/Card';
-import SocialLink from '../components/SocialLink';
-import Triangle from '../components/Triangle';
-import ImageSubtitle from '../components/ImageSubtitle';
-import Hide from '../components/Hide';
+import React from "react";
+import PropTypes from "prop-types";
+import { Image, Text, Flex, Box } from "rebass";
+import { StaticQuery, graphql } from "gatsby";
+import styled from "styled-components";
+import Fade from "react-reveal/Fade";
+import Section from "../components/Section";
+import { CardContainer, Card } from "../components/Card";
+import SocialLink from "../components/SocialLink";
+import Triangle from "../components/Triangle";
+import ImageSubtitle from "../components/ImageSubtitle";
+import Hide from "../components/Hide";
 
 const Background = () => (
   <div>
     <Triangle
       color="secondaryLight"
-      height={['80vh', '80vh']}
-      width={['100vw', '100vw']}
+      height={["80vh", "80vh"]}
+      width={["100vw", "100vw"]}
       invertX
     />
 
     <Triangle
       color="background"
-      height={['50vh', '20vh']}
-      width={['50vw', '50vw']}
+      height={["50vh", "20vh"]}
+      width={["50vw", "50vw"]}
       invertX
     />
 
     <Triangle
       color="primaryDark"
-      height={['25vh', '40vh']}
-      width={['75vw', '60vw']}
+      height={["25vh", "40vh"]}
+      width={["75vw", "60vw"]}
       invertX
       invertY
     />
 
     <Triangle
       color="backgroundDark"
-      height={['25vh', '20vh']}
-      width={['100vw', '100vw']}
+      height={["25vh", "20vh"]}
+      width={["100vw", "100vw"]}
       invertY
     />
   </div>
 );
 
-const CARD_HEIGHT = '200px';
+const CARD_HEIGHT = "200px";
 
-const MEDIA_QUERY_SMALL = '@media (max-width: 400px)';
+const MEDIA_QUERY_SMALL = "@media (max-width: 400px)";
 
 const Title = styled(Text)`
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   display: table;
-  border-bottom: ${props => props.theme.colors.primary} 5px solid;
+  border-bottom: ${(props) => props.theme.colors.primary} 5px solid;
 `;
 
 const TextContainer = styled.div`
@@ -120,7 +120,7 @@ const Project = ({
             {name}
           </Title>
         </span>
-        <Text width={[1]} style={{ overflow: 'auto' }}>
+        <Text width={[1]} style={{ overflow: "auto" }}>
           {description}
         </Text>
       </TextContainer>
@@ -130,7 +130,7 @@ const Project = ({
         <ProjectTag>
           <Flex
             style={{
-              float: 'right',
+              float: "right",
             }}
           >
             {repositoryUrl ? (
@@ -142,7 +142,7 @@ const Project = ({
                 />
               </Box>
             ) : (
-              ''
+              ""
             )}
             <Box mx={1} fontSize={5}>
               <SocialLink

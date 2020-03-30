@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Card as CardRebass } from 'rebass';
+import styled from "styled-components";
+import { Card as CardRebass } from "rebass";
 
 export const CardContainer = styled.div`
   display: grid;
@@ -7,7 +7,7 @@ export const CardContainer = styled.div`
 
   grid-template-columns: repeat(
     auto-fill,
-    minmax(${props => props.minWidth}, 1fr)
+    minmax(${(props) => props.minWidth}, 1fr)
   );
   justify-items: center;
 
@@ -17,7 +17,7 @@ export const CardContainer = styled.div`
 `;
 
 export const Card = styled(CardRebass).attrs({
-  bg: 'white',
+  bg: "white",
   boxShadow: 0,
   borderRadius: 8,
 })`
@@ -26,7 +26,7 @@ export const Card = styled(CardRebass).attrs({
   transition: all 0.25s;
   top: 0;
   height: 100%;
-  cursor: ${props => (props.onClick ? 'pointer' : 'default')};
+  cursor: ${(props) => (props.onClick ? "pointer" : "default")};
 
   &:hover {
     top: -10px;

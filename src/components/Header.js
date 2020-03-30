@@ -1,27 +1,27 @@
-import React, { Fragment } from 'react';
-import Headroom from 'react-headroom';
-import { Flex, Image } from 'rebass';
-import styled from 'styled-components';
-import { SectionLinks } from 'react-scroll-section';
-import Fade from 'react-reveal/Fade';
-import RouteLink from './RouteLink';
-import Logo from './Logo/Portfolio.svg';
+import React, { Fragment } from "react";
+import Headroom from "react-headroom";
+import { Flex, Image } from "rebass";
+import styled from "styled-components";
+import { SectionLinks } from "react-scroll-section";
+import Fade from "react-reveal/Fade";
+import RouteLink from "./RouteLink";
+import Logo from "./Logo/Portfolio.svg";
 
-const capitalize = s => s && s[0].toUpperCase() + s.slice(1);
+const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
 
 const HeaderContainer = styled(Headroom)`
   .headroom--pinned {
-    background: ${props => props.theme.colors.primaryDark};
+    background: ${(props) => props.theme.colors.primaryDark};
   }
 
   position: absolute;
   width: 100%;
 `;
 
-const formatLinks = allLinks =>
+const formatLinks = (allLinks) =>
   Object.entries(allLinks).reduce(
     (acc, [key, value]) => {
-      const isHome = key === 'home';
+      const isHome = key === "home";
       return isHome
         ? {
             ...acc,
@@ -32,7 +32,7 @@ const formatLinks = allLinks =>
             links: [...acc.links, { name: capitalize(key), value }],
           };
     },
-    { links: [], home: null },
+    { links: [], home: null }
   );
 
 const Header = () => (
@@ -55,7 +55,7 @@ const Header = () => (
                 alt="Portfolio Logo"
                 onClick={home.onClick}
                 style={{
-                  cursor: 'pointer',
+                  cursor: "pointer",
                 }}
               />
             );

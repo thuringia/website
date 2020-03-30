@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const noop = () => false;
 
@@ -13,8 +13,8 @@ export class SectionProvider extends React.Component {
     sections: [],
   };
 
-  addSection = section =>
-    this.setState(state => ({ sections: [...state.sections, section] }));
+  addSection = (section) =>
+    this.setState((state) => ({ sections: [...state.sections, section] }));
 
   render() {
     const { sections } = this.state;

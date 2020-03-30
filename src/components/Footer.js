@@ -1,16 +1,16 @@
-import { StaticQuery, graphql } from 'gatsby';
-import React from 'react';
-import styled from 'styled-components';
-import { Text, Flex, Box } from 'rebass';
-import Fade from 'react-reveal/Fade';
-import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from "gatsby";
+import React from "react";
+import styled from "styled-components";
+import { Text, Flex, Box } from "rebass";
+import Fade from "react-reveal/Fade";
+import PropTypes from "prop-types";
 
-import SocialLink from '../components/SocialLink';
+import SocialLink from "./SocialLink";
 
 const FooterContainer = styled.footer`
   padding: 1em;
-  background: ${props => props.theme.colors.primaryDark};
-  color: ${props => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.primaryDark};
+  color: ${(props) => props.theme.colors.background};
   display: flex;
   flex: 0 1 auto;
   flex-direction: column;
@@ -28,7 +28,7 @@ const RenponsiveLogo = styled.img`
   }
 `;
 
-const Logo = ({ url, logo, alt = '' }) => (
+const Logo = ({ url, logo, alt = "" }) => (
   <Box>
     <a href={url} rel="noopener noreferrer" target="_blank">
       <RenponsiveLogo src={logo} alt={alt} />

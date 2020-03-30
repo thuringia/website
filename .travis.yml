@@ -21,4 +21,4 @@ script:
 branches:
   only:
     - master
-    - '/^greenkeeper/.*$/'
+    - "/^greenkeeper/.*$/"

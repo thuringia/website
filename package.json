@@ -9,7 +9,7 @@
     "start": "npm run develop",
     "lint": "eslint ./src",
     "setup": "node ./bin/setup.js",
-    "fmt": "prettier --write \"{.,src/**}/*.{js,json,md,yml,css}\""
+    "fmt": "prettier --write \"{*,src/**/*}.{js,json,md,yml,css}\""
   },
   "repository": {
     "type": "git",

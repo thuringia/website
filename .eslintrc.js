@@ -1,10 +1,10 @@
 module.exports = {
-  extends: ['airbnb', 'prettier'],
+  extends: ["airbnb", "prettier"],
   rules: {
-    'react/jsx-filename-extension': 'off',
-    'react/require-default-props': 'off',
+    "react/jsx-filename-extension": "off",
+    "react/require-default-props": "off",
   },
-  parser: 'babel-eslint',
+  parser: "babel-eslint",
   env: {
     browser: true,
     node: true,

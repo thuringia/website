@@ -98,7 +98,8 @@ const parsePost = postFromGraphql => {
 
 const edgeToArray = data => data.edges.map(edge => edge.node);
 
-const Writing = () => (
+const Writing = () => <></>
+/*
   <StaticQuery
     query={graphql`
       query MediumPostQuery {
@@ -148,5 +149,5 @@ const Writing = () => (
     }}
   />
 );
-
+*/
 export default Writing;

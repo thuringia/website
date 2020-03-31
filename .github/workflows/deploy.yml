@@ -2,7 +2,9 @@ name: Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
+  repository_dispatch:
+    types: publish-content
 
 jobs:
   deploy:
@@ -15,7 +17,7 @@ jobs:
       - name: Prepare Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: "12.x"
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -50,4 +52,4 @@ jobs:
         env:
           GANDI: ${{ secrets.GANDI_API_KEY }}
         with:
-          playbookName: 'ansible/playbook.yml'
+          playbookName: "ansible/playbook.yml"

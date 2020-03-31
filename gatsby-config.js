@@ -1,15 +1,7 @@
-const contentful = require("contentful");
 const manifestConfig = require("./manifest-config");
 require("dotenv").config();
 
-const { ACCESS_TOKEN, SPACE_ID, ANALYTICS_ID } = process.env;
-
-const client = contentful.createClient({
-  space: SPACE_ID,
-  accessToken: ACCESS_TOKEN,
-});
-
-const getAboutEntry = (entry) => entry.sys.contentType.sys.id === "about";
+const { ACCESS_TOKEN, SPACE_ID, NODE_ENV } = process.env;
 
 module.exports = {
   plugins: [
@@ -31,6 +23,7 @@ module.exports = {
       options: {
         spaceId: SPACE_ID,
         accessToken: ACCESS_TOKEN,
+        environment: NODE_ENV === "production" ? "master" : "development",
       },
     },
     "gatsby-transformer-remark",

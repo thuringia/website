@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { Text } from "rebass/styled-components";
 import React from "react";
 import { SectionLink } from "react-scroll-section";
@@ -36,11 +35,7 @@ const StyledLink = styled.a`
   }
 `;
 
-const MarkdownParagraph = ({ children, ...props }) => (
-  <Text as="p" variant="copy" {...props}>
-    {children}
-  </Text>
-);
+const MarkdownParagraph = styled(Text).attrs({ as: "p", variant: "copy" })``;
 
 const MarkdownList = styled.ul`
   margin: 0;
@@ -70,8 +65,8 @@ MarkdownLink.propTypes = {
 };
 
 export default {
-  paragraph: (props) => <MarkdownParagraph {...props} />,
-  list: (props) => <MarkdownList {...props} />,
-  listItem: (props) => <MarkdownListItem {...props} />,
+  paragraph: MarkdownParagraph,
+  list: MarkdownList,
+  listItem: MarkdownListItem,
   link: MarkdownLink,
 };

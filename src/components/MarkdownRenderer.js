@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+import { Text } from "rebass/styled-components";
 import React from "react";
 import { SectionLink } from "react-scroll-section";
 import styled from "styled-components";
@@ -34,13 +36,11 @@ const StyledLink = styled.a`
   }
 `;
 
-const MarkdownParagraph = styled.p`
-  line-height: 2em;
-
-  &:first-child {
-    margin-top: 0em;
-  }
-`;
+const MarkdownParagraph = ({ children, ...props }) => (
+  <Text as="p" variant="copy" {...props}>
+    {children}
+  </Text>
+);
 
 const MarkdownList = styled.ul`
   margin: 0;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Image, Flex } from "rebass";
+import { Box, Image, Flex, Text } from "rebass/styled-components";
 import { StaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
@@ -12,7 +12,7 @@ const Background = () => (
   <div>
     <Triangle
       color="secondaryLight"
-      height={["50vh", "20vh"]}
+      height={["50vh", "15vh"]}
       width={["50vw", "50vw"]}
       invertY
     />
@@ -43,7 +43,13 @@ const ProfilePicture = styled(Image)`
 
 const About = () => (
   <Section.Container id="about" Background={Background}>
-    <Section.Header name="About me" icon="🙋‍♂️" label="person" />
+    <Section.Header
+      mt={5}
+      name="Hello"
+      icon="🙋‍♂️"
+      text={"I'm Robert, a freelance consultant and architect specializing in:"}
+      label="person"
+    />
     <StaticQuery
       query={graphql`
         query AboutMeQuery {

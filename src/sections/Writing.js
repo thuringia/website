@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Heading, Text } from "rebass";
+import { Heading, Text } from "rebass/styled-components";
 import { StaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card as CardRebass } from "rebass";
+import { Card as CardRebass } from "rebass/styled-components";
 
 export const CardContainer = styled.div`
   display: grid;

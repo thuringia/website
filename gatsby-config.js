@@ -22,7 +22,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-fonts",
       options: {
-        fonts: ["cabin", "Open Sans"],
+        display: "swap",
+        fonts: ["IBM Plex Sans:300,400,500,700"],
       },
     },
     {

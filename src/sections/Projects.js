@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Image, Text, Flex, Box } from "rebass";
+import { Image, Text, Flex, Box } from "rebass/styled-components";
 import { StaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
@@ -22,7 +22,7 @@ const Background = () => (
 
     <Triangle
       color="background"
-      height={["50vh", "20vh"]}
+      height={["50vh", "15vh"]}
       width={["50vw", "50vw"]}
       invertX
     />

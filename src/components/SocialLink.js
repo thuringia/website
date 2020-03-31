@@ -7,7 +7,7 @@ import {
   faXing,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "rebass";
+import { Link } from "rebass/styled-components";
 import { Tooltip } from "react-tippy";
 import styled from "styled-components";
 import PropTypes from "prop-types";
@@ -22,16 +22,15 @@ const iconMap = {
 };
 const IconLink = styled(Link)`
   transition: color 0.5s;
-  color: ${(props) => props.theme.colors.primary};
 
   &:hover {
     color: ${(props) => props.theme.colors.primaryLight};
   }
 `;
 
-const SocialLink = ({ fontAwesomeIcon, name, url }) => (
+const SocialLink = ({ fontAwesomeIcon, name, url, ...props }) => (
   <Tooltip title={name} position="bottom" trigger="mouseenter">
-    <IconLink href={url} target="_blank">
+    <IconLink href={url} target="_blank" color="primary" {...props}>
       <FontAwesomeIcon icon={iconMap[fontAwesomeIcon]} />
     </IconLink>
   </Tooltip>

@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import { Heading, Flex, Box, Text } from "rebass";
+import { Heading, Flex, Box, Text } from "rebass/styled-components";
 import TextLoop from "react-text-loop";
 import { SectionLink } from "react-scroll-section";
 import Section from "../components/Section";
@@ -66,7 +66,8 @@ const LandingPage = () => (
               as="h1"
               color="primary"
               fontSize={[5, 6, 8]}
-              mb={[3, 4, 5]}
+              fontWeight={500}
+              mb={[5, 4, 5]}
             >
               {`Hello, I'm ${name}!`}
             </Heading>

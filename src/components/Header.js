@@ -1,17 +1,20 @@
-import React, { Fragment } from "react";
+import { Flex, Image } from "rebass/styled-components";
+import React from "react";
 import Headroom from "react-headroom";
-import { Flex, Image } from "rebass";
-import styled from "styled-components";
-import { SectionLinks } from "react-scroll-section";
 import Fade from "react-reveal/Fade";
-import RouteLink from "./RouteLink";
+import { SectionLinks } from "react-scroll-section";
+import styled from "styled-components";
+
 import Logo from "./Logo/Portfolio.svg";
+
+import RouteLink from "./RouteLink";
 
 const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
 
 const HeaderContainer = styled(Headroom)`
   .headroom--pinned {
     background: ${(props) => props.theme.colors.primaryDark};
+    box-shadow: ${(props) => props.theme.shadows.large};
   }
 
   position: absolute;

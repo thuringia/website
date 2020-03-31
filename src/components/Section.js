@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Section } from "react-scroll-section";
-import { Heading } from "rebass";
+import { Heading } from "rebass/styled-components";
 import PropTypes from "prop-types";
 import Slide from "react-reveal/Slide";
 import LinkAnimated from "./LinkAnimated";
@@ -34,16 +34,21 @@ Container.propTypes = {
   Background: PropTypes.func,
 };
 
-const Header = ({ name, icon = "", label = "" }) => (
+const Header = ({ name, text, icon = "", label = "", ...props }) => (
   <Slide left>
-    <Heading color="secondaryDark" mb={4}>
+    <Heading color="secondaryDark" mb={3} {...props}>
       <LinkAnimated selected>
         {name}
         {icon && (
-          <span role="img" aria-label={label} style={{ marginLeft: "10px" }}>
+          <span
+            role="img"
+            aria-label={label}
+            style={{ marginLeft: "10px", marginRight: "10px" }}
+          >
             {icon}
           </span>
         )}
+        {text}
       </LinkAnimated>
     </Heading>
   </Slide>
@@ -51,6 +56,7 @@ const Header = ({ name, icon = "", label = "" }) => (
 
 Header.propTypes = {
   name: PropTypes.string.isRequired,
+  text: PropTypes.string,
   icon: PropTypes.string,
   label: PropTypes.string,
 };

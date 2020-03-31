@@ -1,5 +1,7 @@
+import { Link } from "gatsby";
+import { Heading, Box, Text } from "rebass/styled-components";
 import React from "react";
-import { Heading, Box } from "rebass";
+
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import Triangle from "../components/Triangle";
@@ -33,11 +35,14 @@ const NotFoundPage = () => (
   <Layout>
     <Section.Container id="404" Background={Background}>
       <Box width={[320, 400, 600]} m="auto">
-        <Heading color="primaryDark" fontSize={["9rem", "13rem", "16rem"]}>
+        <Heading color="primary" fontSize={["9rem", "13rem", "16rem"]}>
           404
         </Heading>
-        <Heading color="secondary" fontSize={["4rem", "5rem", "6rem"]}>
-          There isn't anything here
+        <Text color="primary" fontSize="3rem" mb={4}>
+          This is not the content you are looking for…
+        </Text>
+        <Heading color="primary" fontSize="2rem">
+          <Link to="/">Back to Home</Link>
         </Heading>
       </Box>
     </Section.Container>

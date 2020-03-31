@@ -1,6 +1,7 @@
+import { Box } from "rebass/styled-components";
 import React from "react";
-import { Box } from "rebass";
 import PropTypes from "prop-types";
+
 import LinkAnimated from "./LinkAnimated";
 
 const RouteLink = ({ onClick, selected, children }) => (

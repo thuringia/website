@@ -35,10 +35,10 @@ Container.propTypes = {
   Background: PropTypes.func,
 };
 
-const Header = ({ name, text, icon = "", label = "", ...props }) => (
+const Header = ({ name, text, icon = "", label = "", href, ...props }) => (
   <Slide left>
     <HeadingSection {...props}>
-      <LinkAnimated selected>
+      <LinkAnimated href={href} selected>
         {name}
         {icon && (
           <span
@@ -60,6 +60,7 @@ Header.propTypes = {
   text: PropTypes.string,
   icon: PropTypes.string,
   label: PropTypes.string,
+  href: PropTypes.string,
 };
 
 export default {

@@ -13,16 +13,17 @@ export const HeadingHero = styled(Heading).attrs({
   color: "primary",
   fontSize: [5, 6, 8],
   fontWeight: 500,
-  marginBottom: [5, 4, 5],
+  marginTop: 0,
+  marginBottom: [5, 4, 2],
 })``;
 
 export const HeadingSection = styled(Heading).attrs({
   as: "h2",
   color: "secondaryDark",
-  fontSize: 4,
   fontWeight: 300,
 })(
   css({
+    fontSize: 4,
     marginBottom: 4,
   })
 );

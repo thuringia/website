@@ -15,7 +15,9 @@ import { Tooltip } from "react-tippy";
 
 import { Box } from "./Grid";
 
-export const LinkAnimated = styled.span`
+export const LinkAnimated = styled.div.attrs((props) => ({
+  as: props.href ? "a" : "span",
+}))`
   text-decoration: none;
   position: relative;
   margin-bottom: 0;
@@ -25,7 +27,7 @@ export const LinkAnimated = styled.span`
     props.selected &&
     `border-bottom:  5px solid ${props.theme.colors.primaryLight}`};
   transition: 0.4s;
-  cursor: ${(props) => (props.onClick ? "pointer" : "default")};
+  cursor: ${(props) => (props.onClick || props.href ? "pointer" : "default")};
 
   &:after {
     content: "";

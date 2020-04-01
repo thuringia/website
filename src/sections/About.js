@@ -13,21 +13,21 @@ import { Text } from "../components/Typography";
 const Background = () => (
   <div>
     <Triangle
-      color="secondaryLight"
+      color="secondaryLightSoft"
       height={["50vh", "15vh"]}
       width={["50vw", "50vw"]}
       invertY
     />
 
     <Triangle
-      color="primaryDark"
+      color="primaryDarkSoft"
       height={["20vh", "40vh"]}
       width={["75vw", "70vw"]}
       invertX
     />
 
     <Triangle
-      color="backgroundDark"
+      color="backgroundDarkSoft"
       height={["25vh", "20vh"]}
       width={["100vw", "100vw"]}
     />

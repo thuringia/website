@@ -4,6 +4,7 @@ import {
   faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { graphql, useStaticQuery } from "gatsby";
+import { find, get } from "lodash/fp";
 import React from "react";
 import TextLoop from "react-text-loop";
 import { SectionLink } from "react-scroll-section";
@@ -24,20 +25,20 @@ const Background = () => (
     />
 
     <Triangle
-      color="secondary"
+      color="secondarySoft"
       height={["38vh", "80vh"]}
       width={["50vw", "35vw"]}
     />
 
     <Triangle
-      color="primaryDark"
+      color="primaryDarkSoft"
       height={["25vh", "35vh"]}
       width={["75vw", "60vw"]}
       invertX
     />
 
     <Triangle
-      color="backgroundDark"
+      color="backgroundDarkSoft"
       height={["20vh", "20vh"]}
       width={["100vw", "100vw"]}
       invertX
@@ -69,6 +70,32 @@ export default () => {
   return (
     <Section.Container id="home" Background={Background}>
       <>
+        <Flex
+          alignItems="center"
+          justifyContent="center"
+          flexWrap="wrap"
+          mt={6}
+          color={available ? "primary" : "primaryDark"}
+        >
+          <Section.Header
+            fontSize={8}
+            color="red"
+            href={get(
+              "url",
+              find({ fontAwesomeIcon: "envelope" }, socialLinks)
+            )}
+            icon={
+              <FontAwesomeIcon
+                icon={available ? faQuestionCircle : faTimesCircle}
+              />
+            }
+            text={
+              available
+                ? `available from: ${availableFrom}`
+                : `unavailable until: ${availableFrom}`
+            }
+          />
+        </Flex>
         <HeadingHero as="h1" variant="hero">
           {`Hello, I'm ${name}!`}
         </HeadingHero>
@@ -80,7 +107,7 @@ export default () => {
           mb={[3, 5]}
           textAlign="center"
         >
-          <TextLoop interval={10000}>
+          <TextLoop>
             {roles.map((text) => (
               <Text as="span" width={[300, 500]} key={text}>
                 {text}
@@ -101,22 +128,7 @@ export default () => {
             </Box>
           ))}
         </Flex>
-        <Flex
-          alignItems="center"
-          justifyContent="center"
-          flexWrap="wrap"
-          fontSize={[5, 6, 6]}
-          color={available ? "backgroundDark" : "primaryDark"}
-        >
-          <FontAwesomeIcon
-            icon={available ? faQuestionCircle : faTimesCircle}
-          />
-          <Text p={3} fontSize={3} fontWeight={available ? 300 : 700}>
-            {available
-              ? `available from: ${availableFrom}`
-              : `unavailable until: ${availableFrom}`}
-          </Text>
-        </Flex>
+
         <SectionLink section="about">
           {({ onClick }) => <MouseIcon onClick={onClick} />}
         </SectionLink>

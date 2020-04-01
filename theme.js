@@ -1,3 +1,5 @@
+const { saturate } = require("polished");
+
 const colors = {
   primary: "#0F1B40",
   primaryLight: "#849496",
@@ -10,7 +12,12 @@ const colors = {
   background: "#FFFFFF",
   backgroundDark: "#3d6aff",
 };
+
+colors.primaryDarkSoft = saturate(-0.25, colors.primaryDark);
+colors.secondarySoft = saturate(-0.25, colors.secondary);
+colors.secondaryLightSoft = saturate(-0.25, colors.secondaryLight);
 colors.backgroundLight = colors.secondaryLight;
+colors.backgroundDarkSoft = saturate(-0.25, colors.backgroundDark);
 
 const breakpoints = ["40em", "52em", "64em"];
 

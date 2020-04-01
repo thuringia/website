@@ -1,26 +1,25 @@
+# wawrob.xyz
+
+![](https://github.com/thuringia/website/workflows/Deploy/badge.svg?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/thuringia/website/badge.svg)](https://snyk.io/test/github/thuringia/website)
+
 [![eslint](https://img.shields.io/badge/eslint-enabled-green.svg)](https://eslint.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-
-# wawrob.xyz
 
 ## Features 🛠
 
 - [Gatsby v2](https://www.gatsbyjs.org/)
-- [Rebass 3.0 🎉](https://rebassjs.org/): styled component system
+- [`styled-system`](https://styled-system.com/): styled component enhancements and theming
 - [React Reveal](https://www.react-reveal.com/)
 - Dynamic content from [Contentful](https://contentful.com)
 - Offline support
 - PWA ready
-- SEO
+- SEO`
 - Responsive design
 - Icons from [font-awesome](https://fontawesome.com/)
-- [Netlify](https://www.netlify.com) Deployment Friendly
-- Medium integration
-- Social sharing (Twitter, Facebook, Google, LinkedIn)
 - Developer tools:
   - eslint
   - prettier
-- Google Analytics
 
 ## How to start ▶️
 

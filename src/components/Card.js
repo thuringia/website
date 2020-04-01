@@ -1,5 +1,15 @@
 import styled from "styled-components";
-import { Card as CardRebass } from "rebass/styled-components";
+import css from "@styled-system/css";
+
+import { Box } from "./Grid";
+
+const CardBase = styled(Box)(
+  css({
+    p: 1,
+    bg: "background",
+    boxShadow: "large",
+  })
+);
 
 export const CardContainer = styled.div`
   display: grid;
@@ -16,7 +26,7 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const Card = styled(CardRebass).attrs({
+export const Card = styled(CardBase).attrs({
   bg: "white",
   boxShadow: 0,
   borderRadius: 8,

@@ -5,14 +5,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import { Heading, Flex, Box, Text } from "rebass/styled-components";
 import TextLoop from "react-text-loop";
 import { SectionLink } from "react-scroll-section";
 
+import { Box, Flex } from "../components/Grid";
+import { SocialLink } from "../components/Link";
 import MouseIcon from "../components/MouseIcon";
 import Section from "../components/Section";
-import SocialLink from "../components/SocialLink";
 import Triangle from "../components/Triangle";
+import { Heading, HeadingHero, Text } from "../components/Typography";
 
 const Background = () => (
   <div>
@@ -68,16 +69,9 @@ export default () => {
   return (
     <Section.Container id="home" Background={Background}>
       <>
-        <Heading
-          textAlign="center"
-          as="h1"
-          color="primary"
-          fontSize={[5, 6, 8]}
-          fontWeight={500}
-          mb={[5, 4, 5]}
-        >
+        <HeadingHero as="h1" variant="hero">
           {`Hello, I'm ${name}!`}
-        </Heading>
+        </HeadingHero>
 
         <Heading
           as="h2"
@@ -86,9 +80,9 @@ export default () => {
           mb={[3, 5]}
           textAlign="center"
         >
-          <TextLoop>
+          <TextLoop interval={10000}>
             {roles.map((text) => (
-              <Text width={[300, 500]} key={text}>
+              <Text as="span" width={[300, 500]} key={text}>
                 {text}
               </Text>
             ))}
@@ -103,7 +97,7 @@ export default () => {
         >
           {socialLinks.map(({ id, ...rest }) => (
             <Box mx={3} fontSize={[5, 6, 6]} key={id}>
-              <SocialLink {...rest} />
+              <SocialLink color="primary" {...rest} />
             </Box>
           ))}
         </Flex>

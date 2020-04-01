@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Image, Text, Flex, Box } from "rebass/styled-components";
 import { StaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
-import Section from "../components/Section";
+
 import { CardContainer, Card } from "../components/Card";
-import SocialLink from "../components/SocialLink";
-import Triangle from "../components/Triangle";
-import ImageSubtitle from "../components/ImageSubtitle";
+import { Image, Flex, Box } from "../components/Grid";
 import Hide from "../components/Hide";
+import { SocialLink } from "../components/Link";
+import ImageSubtitle from "../components/ImageSubtitle";
+import Section from "../components/Section";
+import Triangle from "../components/Triangle";
+import { Text } from "../components/Typography";
 
 const Background = () => (
   <div>

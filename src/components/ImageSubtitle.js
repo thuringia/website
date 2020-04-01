@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { Box } from "rebass/styled-components";
 import PropTypes from "prop-types";
+
+import { Box } from "./Grid";
 
 const BORDER_SPACING = "20px";
 const BORDER_RADIUS = "8px";

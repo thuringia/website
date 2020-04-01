@@ -1,10 +1,11 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import { Text, Flex, Box } from "rebass/styled-components";
 
+import { Flex, Box } from "./Grid";
 import markdownRenderer from "./MarkdownRenderer";
-import SocialLink from "./SocialLink";
+import { SocialLink } from "./Link";
+import { Text } from "./Typography";
 
 export default () => {
   const {
@@ -35,7 +36,7 @@ export default () => {
       justifyContent="space-between"
       flexWrap="wrap"
     >
-      <Text color="background">
+      <Text as="div" color="background" variant="light">
         <ReactMarkdown
           source={imprint.childMarkdownRemark.rawMarkdownBody}
           renderers={markdownRenderer}

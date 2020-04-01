@@ -1,8 +1,10 @@
-import { Text } from "rebass/styled-components";
 import React from "react";
 import { SectionLink } from "react-scroll-section";
 import styled from "styled-components";
+import css from "@styled-system/css";
 import PropTypes from "prop-types";
+
+import { Text } from "./Typography";
 
 const StyledLink = styled.a`
   display: inline-block;
@@ -35,16 +37,20 @@ const StyledLink = styled.a`
   }
 `;
 
-const MarkdownParagraph = styled(Text).attrs({ as: "p", variant: "copy" })``;
+const MarkdownParagraph = styled(Text).attrs({
+  as: "p",
+})``;
 
-const MarkdownList = styled.ul`
+const MarkdownList = styled(MarkdownParagraph).attrs({ as: "ul" })`
   margin: 0;
 `;
 
-const MarkdownListItem = styled.li`
-  margin: 1em 0;
-  line-height: 2em;
-`;
+const MarkdownListItem = styled(MarkdownParagraph).attrs({ as: "li" })(
+  css({
+    my: 1,
+    lineHeight: "2em",
+  })
+);
 
 const MarkdownLink = ({ href, children }) => {
   const isInnerLink = href.startsWith("#");

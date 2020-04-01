@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Section } from "react-scroll-section";
-import { Heading } from "rebass/styled-components";
 import PropTypes from "prop-types";
 import Slide from "react-reveal/Slide";
-import LinkAnimated from "./LinkAnimated";
+
+import { LinkAnimated } from "./Link";
+import { HeadingSection } from "./Typography";
 
 const SectionContainer = styled.div`
   min-height: 100vh;
@@ -36,7 +37,7 @@ Container.propTypes = {
 
 const Header = ({ name, text, icon = "", label = "", ...props }) => (
   <Slide left>
-    <Heading color="secondaryDark" mb={3} {...props}>
+    <HeadingSection {...props}>
       <LinkAnimated selected>
         {name}
         {icon && (
@@ -50,7 +51,7 @@ const Header = ({ name, text, icon = "", label = "", ...props }) => (
         )}
         {text}
       </LinkAnimated>
-    </Heading>
+    </HeadingSection>
   </Slide>
 );
 

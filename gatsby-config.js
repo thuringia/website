@@ -1,5 +1,6 @@
-const manifestConfig = require("./manifest-config");
 require("dotenv").config();
+
+const manifestConfig = require("./manifest-config");
 
 const { ACCESS_TOKEN, SPACE_ID, NODE_ENV } = process.env;
 

@@ -1,7 +1,8 @@
 import { Link } from "gatsby";
-import { Heading, Box, Text } from "rebass/styled-components";
 import React from "react";
 
+import { Box } from "../components/Grid";
+import { Heading, Text } from "../components/Typography";
 import Layout from "../components/Layout";
 import Section from "../components/Section";
 import Triangle from "../components/Triangle";

@@ -1,4 +1,4 @@
-const colors = require("./colors");
+const colors = require("./theme");
 
 module.exports = {
   name: `Robert Wawrzyniak's Portfolio`,

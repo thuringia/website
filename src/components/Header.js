@@ -1,4 +1,4 @@
-import { Flex, Image } from "rebass/styled-components";
+import { capitalize } from "lodash/fp";
 import React from "react";
 import Headroom from "react-headroom";
 import Fade from "react-reveal/Fade";
@@ -7,9 +7,8 @@ import styled from "styled-components";
 
 import Logo from "./Logo/Portfolio.svg";
 
-import RouteLink from "./RouteLink";
-
-const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
+import { Flex, Image } from "./Grid";
+import { RouteLink } from "./Link";
 
 const HeaderContainer = styled(Headroom)`
   .headroom--pinned {
@@ -18,6 +17,7 @@ const HeaderContainer = styled(Headroom)`
   }
 
   position: absolute;
+  top: 0;
   width: 100%;
 `;
 

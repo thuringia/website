@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { Link as GatsbyLink } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faGlobe } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -9,11 +9,45 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { color } from "styled-system";
+import { color, compose, variant } from "styled-system";
 import React from "react";
 import { Tooltip } from "react-tippy";
 
 import { Box } from "./Grid";
+import css from "@styled-system/css";
+import { Text } from "./Typography";
+
+export const Link = styled(Text).attrs({ as: "a" })(
+  compose(variant({ scale: "links" }))
+);
+
+export const Mouse = styled(Link)`
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const Pill = styled(Link)(
+  css({
+    bg: "background",
+    transition: "box-shadow 0.3s ease-in-out",
+    boxShadow: "large",
+    "&:hover": {
+      boxShadow: "larger",
+    },
+    borderRadius: 50,
+    p: 3,
+    mb: 4,
+    fontSize: 4,
+    textDecoration: "none",
+  })
+);
 
 export const LinkAnimated = styled.div.attrs((props) => ({
   as: props.href ? "a" : "span",
@@ -73,7 +107,7 @@ const iconMap = {
 };
 
 const IconLink = styled.div.attrs((props) => ({
-  as: props.href.startsWith("/") ? Link : "a",
+  as: props.href.startsWith("/") ? GatsbyLink : Link,
 }))`
   ${color}
   transition: color 0.5s;
@@ -97,4 +131,4 @@ SocialLink.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
-export default { LinkAnimated, RouteLink };
+export default { LinkAnimated, RouteLink, Link, Mouse, Pill };

@@ -62,5 +62,6 @@ module.exports = {
   },
   shadows: {
     large: "0 12px 16px rgba(0, 0, 0, 0.2)",
+    larger: "0 12px 16px rgba(0, 0, 0, 0.4)",
   },
 };

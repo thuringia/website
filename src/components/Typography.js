@@ -28,8 +28,9 @@ export const HeadingSection = styled(Heading).attrs({
   })
 );
 
-export const Link = styled(Text).attrs({ as: "a" })(
-  compose(variant({ scale: "links" }))
-);
-
-export default { Text, Heading, HeadingHero, HeadingSection, Link };
+export default {
+  Text,
+  Heading,
+  HeadingHero,
+  HeadingSection,
+};

@@ -10,13 +10,12 @@ import React from "react";
 import TextLoop from "react-text-loop";
 import { SectionLink } from "react-scroll-section";
 import { Tooltip } from "react-tippy";
-import styled from "styled-components";
 
 import { Box, Flex } from "../components/Grid";
-import { SocialLink } from "../components/Link";
+import { SocialLink, Pill, Mouse } from "../components/Link";
 import Section from "../components/Section";
 import Triangle from "../components/Triangle";
-import { Heading, HeadingHero, Text, Link } from "../components/Typography";
+import { Heading, HeadingHero, Text } from "../components/Typography";
 
 const Background = () => (
   <div>
@@ -48,18 +47,6 @@ const Background = () => (
     />
   </div>
 );
-
-const Mouse = styled(Link)`
-  position: absolute;
-  bottom: 0.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  cursor: pointer;
-
-  @media only screen and (max-width: 700px) {
-    display: none;
-  }
-`;
 
 export default () => {
   const {
@@ -100,33 +87,27 @@ export default () => {
             ))}
           </TextLoop>
         </Heading>
-        <HeadingHero as="h1" variant="hero" mb={0}>
+        <HeadingHero as="h1" variant="hero">
           {`Hello, I'm ${name}!`}
         </HeadingHero>
-        <Flex
-          alignItems="center"
-          justifyContent="center"
-          flexWrap="wrap"
-          color={available ? "primary" : "primaryDark"}
-        >
-          <Section.Header
-            fontSize={8}
-            color="red"
+        <Flex alignItems="center" justifyContent="center" flexWrap="wrap">
+          <Pill
+            mt={4}
+            color={available ? "primary" : "primaryDark"}
             href={get(
               "url",
               find({ fontAwesomeIcon: "envelope" }, socialLinks)
             )}
-            icon={
-              <FontAwesomeIcon
-                icon={available ? faQuestionCircle : faTimesCircle}
-              />
-            }
-            text={
-              available
+          >
+            <FontAwesomeIcon
+              icon={available ? faQuestionCircle : faTimesCircle}
+            />
+            <Text as="span" ml={2}>
+              {available
                 ? `available from: ${availableFrom}`
-                : `unavailable until: ${availableFrom}`
-            }
-          />
+                : `unavailable until: ${availableFrom}`}
+            </Text>
+          </Pill>
         </Flex>
 
         <Flex alignItems="center" justifyContent="center">

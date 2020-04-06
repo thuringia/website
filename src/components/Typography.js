@@ -14,7 +14,7 @@ export const HeadingHero = styled(Heading).attrs({
   fontSize: [5, 6, 8],
   fontWeight: 500,
   marginTop: 0,
-  marginBottom: [5, 4, 2],
+  marginBottom: [4, 4, 2],
 })``;
 
 export const HeadingSection = styled(Heading).attrs({
@@ -24,8 +24,12 @@ export const HeadingSection = styled(Heading).attrs({
 })(
   css({
     fontSize: 4,
-    marginBottom: 4,
+    marginBottom: [4, 5],
   })
 );
 
-export default { Text, Heading, HeadingHero, HeadingSection };
+export const Link = styled(Text).attrs({ as: "a" })(
+  compose(variant({ scale: "links" }))
+);
+
+export default { Text, Heading, HeadingHero, HeadingSection, Link };

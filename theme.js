@@ -58,7 +58,6 @@ module.exports = {
       color: colors.primary,
       fontSize: fontSizes[8],
       fontWeight: 500,
-      marginBottom: space[5],
     },
   },
   shadows: {

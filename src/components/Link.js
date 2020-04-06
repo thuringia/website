@@ -84,7 +84,7 @@ const IconLink = styled.div.attrs((props) => ({
 `;
 
 export const SocialLink = ({ fontAwesomeIcon, name, url, ...props }) => (
-  <Tooltip title={name} position="bottom" trigger="mouseenter">
+  <Tooltip title={name} position="bottom">
     <IconLink href={url} target="_blank" color="primary" {...props}>
       <FontAwesomeIcon icon={iconMap[fontAwesomeIcon]} />
     </IconLink>

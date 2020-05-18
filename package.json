@@ -9,7 +9,9 @@
     "start": "npm run develop",
     "lint": "eslint ./src",
     "setup": "node ./bin/setup.js",
-    "fmt": "prettier --write \"{*,src/**/*}.{js,json,md,yml,css}\""
+    "fmt": "prettier --write \"{*,src/**/*}.{js,json,md,yml,css}\"",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -36,12 +38,12 @@
     "@styled-system/css": "^5.1.5",
     "dotenv": "^6.0.0",
     "envfile": "^3.0.0",
-    "gatsby": "^2.0.7",
+    "gatsby": "^2.20.18",
     "gatsby-plugin-google-analytics": "^2.0.9",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-manifest": "^2.0.2",
     "gatsby-plugin-offline": "^2.0.5",
-    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-plugin-react-helmet": "^3.2.2",
     "gatsby-plugin-styled-components": "^3.0.0",
     "gatsby-source-contentful": "^2.0.1",
     "gatsby-source-medium": "^2.0.0",
@@ -62,7 +64,8 @@
     "react-text-loop": "^2.0.1",
     "react-tippy": "^1.2.2",
     "styled-components": "^5.1.0",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "snyk": "^1.317.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",
@@ -88,5 +91,6 @@
     "*.{js,json,css,md,yml}": [
       "prettier --write"
     ]
-  }
+  },
+  "snyk": true
 }

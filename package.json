@@ -9,7 +9,9 @@
     "start": "npm run develop",
     "lint": "eslint ./src",
     "setup": "node ./bin/setup.js",
-    "fmt": "prettier --write \"{*,src/**/*}.{js,json,md,yml,css}\""
+    "fmt": "prettier --write \"{*,src/**/*}.{js,json,md,yml,css}\"",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -62,7 +64,8 @@
     "react-text-loop": "^2.0.1",
     "react-tippy": "^1.2.2",
     "styled-components": "^5.0.1",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "snyk": "^1.317.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",
@@ -88,5 +91,6 @@
     "*.{js,json,css,md,yml}": [
       "prettier --write"
     ]
-  }
+  },
+  "snyk": true
 }

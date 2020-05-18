@@ -4,7 +4,7 @@
   "description": "My website powered by Gatsby",
   "main": "src/pages/index.js",
   "scripts": {
-    "build": "gatsby build --no-uglify",
+    "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "lint": "eslint ./src",
@@ -39,7 +39,6 @@
     "dotenv": "^6.0.0",
     "envfile": "^3.0.0",
     "gatsby": "^2.20.18",
-    "gatsby-plugin-google-analytics": "^2.0.9",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-manifest": "^2.0.2",
     "gatsby-plugin-offline": "^2.0.5",
@@ -63,9 +62,9 @@
     "react-scroll-section": "^1.3.0",
     "react-text-loop": "^2.0.1",
     "react-tippy": "^1.2.2",
+    "snyk": "^1.321.0",
     "styled-components": "^5.1.0",
-    "styled-system": "^5.1.5",
-    "snyk": "^1.321.0"
+    "styled-system": "^5.1.5"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",
@@ -80,7 +79,8 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.1.0",
-    "prettier": "^2.0.2"
+    "prettier": "^2.0.2",
+    "react-refresh": "^0.8.2"
   },
   "husky": {
     "hooks": {

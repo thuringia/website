@@ -65,7 +65,7 @@
     "react-tippy": "^1.2.2",
     "styled-components": "^5.0.1",
     "styled-system": "^5.1.5",
-    "snyk": "^1.317.0"
+    "snyk": "^1.321.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",

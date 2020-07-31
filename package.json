@@ -48,7 +48,7 @@
     "gatsby-source-medium": "^2.0.0",
     "gatsby-transformer-remark": "^2.1.3",
     "inquirer": "^6.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.16",
     "polished": "^3.6.5",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
@@ -62,7 +62,7 @@
     "react-scroll-section": "^1.3.0",
     "react-text-loop": "^2.0.1",
     "react-tippy": "^1.2.2",
-    "snyk": "^1.341.0",
+    "snyk": "^1.369.2",
     "styled-components": "^5.1.0",
     "styled-system": "^5.1.5"
   },

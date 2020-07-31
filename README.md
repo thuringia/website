@@ -186,3 +186,5 @@ All the components inside `Layout` are `Section` components. A section can have 
 MIT.
 
 Based on Ema Suriano's excellent [Gatsby starter](https://github.com/EmaSuriano/gatsby-starter-mate)
+
+Forked and heavily inspired by my good friend [Zyclotrop-j](https://github.com/Zyclotrop-j)'s website at [Zyclotrop-j/websites.mingram.net](https://github.com/Zyclotrop-j/websites.mingram.net)

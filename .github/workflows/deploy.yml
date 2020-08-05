@@ -48,7 +48,7 @@ jobs:
           aws-region: eu-central-1
 
       - name: Deploy playbook
-        uses: saubermacherag/ansible-playbook-docker-action@v1.3
+        uses: saubermacherag/ansible-playbook-docker-action@v1.4
         env:
           GANDI: ${{ secrets.GANDI_API_KEY }}
         with:

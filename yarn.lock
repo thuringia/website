@@ -12112,10 +12112,6 @@ react-fontawesome@^1.6.1:
   dependencies:
     prop-types "^15.5.6"
 
-react-github-corner@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/react-github-corner/-/react-github-corner-2.3.0.tgz#73ab17324b670c9cd955567b09663d385cfb05ef"
-
 react-headroom@^2.2.4:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/react-headroom/-/react-headroom-2.2.8.tgz#68c1233262efe028c591b9096c522207362ad133"
@@ -12218,13 +12214,13 @@ react-reveal@^1.2.2:
   dependencies:
     prop-types "^15.5.10"
 
-react-scroll-section@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-scroll-section/-/react-scroll-section-1.3.0.tgz#632914bb935e29c0cf4feebb16bcb75f79feb116"
+react-scroll-section@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-scroll-section/-/react-scroll-section-2.1.0.tgz#eccab09ead381d1e52551397efadfc83216c1644"
+  integrity sha512-Fj3rOEWtI6FdDGSJPmSgg5dEQdtVYHBk1mwikrMAoBySF2XfQ4RsvNFTAYZnph3U2kLqL4HMB1d1RTJGfZmU2w==
   dependencies:
     debounce "^1.2.0"
     prop-types "^15.6.2"
-    react-github-corner "^2.3.0"
 
 react-side-effect@^1.1.0:
   version "1.2.0"

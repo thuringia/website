@@ -44,7 +44,7 @@
     "gatsby-plugin-styled-components": "^3.0.0",
     "gatsby-source-contentful": "^2.3.35",
     "gatsby-transformer-remark": "^2.8.28",
-    "inquirer": "^6.2.0",
+    "inquirer": "^7.3.3",
     "lodash": "^4.17.15",
     "polished": "^3.6.5",
     "prop-types": "^15.6.2",

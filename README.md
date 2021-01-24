@@ -1,7 +1,6 @@
 # wawrob.xyz
 
 ![](https://github.com/thuringia/website/workflows/Deploy/badge.svg?branch=master)
-[![Known Vulnerabilities](https://snyk.io/test/github/thuringia/website/badge.svg)](https://snyk.io/test/github/thuringia/website)
 
 [![eslint](https://img.shields.io/badge/eslint-enabled-green.svg)](https://eslint.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)

@@ -1,0 +1,19 @@
+on:
+  schedule:
+    - cron: "0 5 */90 * *"
+
+jobs:
+  rotate:
+    name: rotate iam user keys
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.0.0
+
+      - name: rotate aws keys
+        uses: kneemaa/github-action-rotate-aws-secrets@v1.0.0
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          IAM_USERNAME: "GithubFunctionalUser-099a420"
+          GITHUB_TOKEN: ${{ secrets.GH_KEY_ROTATION }}
+          OWNER_REPOSITORY: ${{ github.repository }}

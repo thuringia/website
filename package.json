@@ -66,7 +66,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.10.7",
-    "chalk": "^2.4.1",
+    "chalk": "^4.1.1",
     "contentful-import": "^7.9.28",
     "eslint": "7.2.0",
     "eslint-config-airbnb": "18.2.0",

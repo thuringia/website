@@ -13,13 +13,6 @@ module.exports = {
     },
     "gatsby-plugin-styled-components",
     {
-      resolve: "gatsby-plugin-google-fonts",
-      options: {
-        display: "swap",
-        fonts: ["IBM Plex Sans:300,400,500,700"],
-      },
-    },
-    {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: SPACE_ID,

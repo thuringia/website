@@ -29,6 +29,7 @@
   },
   "homepage": "https://wawrob.xyz",
   "dependencies": {
+    "@fontsource/ibm-plex-sans": "^4.5.13",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
@@ -37,7 +38,6 @@
     "dotenv": "^6.0.0",
     "envfile": "^3.0.0",
     "gatsby": "^2.20.18",
-    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-manifest": "^2.0.2",
     "gatsby-plugin-offline": "^2.0.5",
     "gatsby-plugin-react-helmet": "^3.2.2",

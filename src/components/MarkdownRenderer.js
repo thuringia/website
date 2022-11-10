@@ -71,8 +71,10 @@ MarkdownLink.propTypes = {
 };
 
 export default {
-  paragraph: MarkdownParagraph,
-  list: MarkdownList,
-  listItem: MarkdownListItem,
-  link: MarkdownLink,
+  p: MarkdownParagraph,
+  ol: MarkdownList,
+  ul: MarkdownList,
+  li: MarkdownListItem,
+  a: MarkdownLink,
+  linkReference: MarkdownLink,
 };

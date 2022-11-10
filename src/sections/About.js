@@ -77,10 +77,9 @@ const About = () => (
             <Box width={[1, 1, 4 / 6]} px={[1, 2, 4]}>
               <Fade bottom>
                 <Text as="div" variant="copy">
-                  <ReactMarkdown
-                    source={aboutMe.childMarkdownRemark.rawMarkdownBody}
-                    renderers={markdownRenderer}
-                  />
+                  <ReactMarkdown components={markdownRenderer}>
+                    {aboutMe.childMarkdownRemark.rawMarkdownBody}
+                  </ReactMarkdown>
                 </Text>
               </Fade>
             </Box>

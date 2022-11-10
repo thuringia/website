@@ -6,7 +6,7 @@ const { ACCESS_TOKEN, SPACE_ID, NODE_ENV } = process.env;
 
 module.exports = {
   plugins: [
-    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-image",
     {
       resolve: "gatsby-plugin-manifest",
       options: manifestConfig,

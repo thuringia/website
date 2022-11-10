@@ -6,6 +6,7 @@ import {
   faLinkedin,
   faTwitter,
   faXing,
+  faMastodon,
 } from "@fortawesome/free-brands-svg-icons";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -104,6 +105,7 @@ const iconMap = {
   linkedin: faLinkedin,
   twitter: faTwitter,
   xing: faXing,
+  mastodon: faMastodon,
 };
 
 const IconLink = styled.div.attrs((props) => ({

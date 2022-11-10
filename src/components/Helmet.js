@@ -1,5 +1,4 @@
 import React from "react";
-import ReactHelmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
 import { withTheme } from "styled-components";
 import PropTypes from "prop-types";
@@ -33,7 +32,7 @@ const Helmet = ({ theme = {} }) => (
       const title = `${name} Portofolio`;
 
       return (
-        <ReactHelmet>
+        <>
           <meta charSet="utf-8" />
           <title>{title}</title>
           <meta name="description" content={description} />
@@ -74,7 +73,7 @@ const Helmet = ({ theme = {} }) => (
             sizes="16x16"
             href={profile.favicon16.src}
           />
-        </ReactHelmet>
+        </>
       );
     }}
   />

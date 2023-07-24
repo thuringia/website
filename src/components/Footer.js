@@ -37,10 +37,9 @@ export default () => {
       flexWrap="wrap"
     >
       <Text as="div" color="background" variant="light">
-        <ReactMarkdown
-          source={imprint.childMarkdownRemark.rawMarkdownBody}
-          renderers={markdownRenderer}
-        />
+        <ReactMarkdown components={markdownRenderer}>
+          {imprint.childMarkdownRemark.rawMarkdownBody}
+        </ReactMarkdown>
       </Text>
       <Flex alignItems="center">
         <Text color="background" key={contactMe}>

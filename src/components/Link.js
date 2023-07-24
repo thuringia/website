@@ -1,6 +1,10 @@
 import { Link as GatsbyLink } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faGlobe } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEnvelope,
+  faGlobe,
+  faSchool,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
   faLinkedin,
@@ -106,6 +110,7 @@ const iconMap = {
   twitter: faTwitter,
   xing: faXing,
   mastodon: faMastodon,
+  school: faSchool,
 };
 
 const IconLink = styled.div.attrs((props) => ({
